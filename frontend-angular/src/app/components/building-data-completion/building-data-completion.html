@@ -1,0 +1,27 @@
+<app-header 
+  [pageTitle]="'استكمال بيانات مبنى تعليمي'"
+  [showBackButton]="true"
+  [showHomeButton]="true"
+  (backClicked)="navigateBack()"
+  (homeClicked)="goHome()"
+  (logoutClicked)="logout()"
+></app-header>
+
+<div class="container">
+  <div class="page-content">
+    <h1>استكمال بيانات مبنى تعليمي</h1>
+    <p class="subtitle">تسجيل وإكمال بيانات المبنى</p>
+
+    <div class="options-grid">
+      <div
+        *ngFor="let option of options"
+        (click)="navigateToOption(option.route)"
+        class="option-card"
+      >
+        <div class="option-icon">{{ option.icon }}</div>
+        <h3>{{ option.title }}</h3>
+        <span class="arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>

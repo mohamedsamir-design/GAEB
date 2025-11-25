@@ -1,0 +1,345 @@
+<app-header [pageTitle]="'إدخال بيانات المعاينة الفنية للأراضي'" [showBackButton]="true" [showHomeButton]="true"
+  [backButtonLabel]="'العودة'" [backButtonAriaLabel]="'العودة للقائمة الرئيسية'" (backClicked)="goBack()"
+  (homeClicked)="goHome()" (logoutClicked)="logout()">
+</app-header>
+
+<div class="container">
+  <div class="page-content">
+
+    <h1>إدخال بيانات معاينه فنيه لأرض</h1>
+    <p class="subtitle">إدخال بيانات معاينة فنيه لأرض</p>
+
+    <div class="form-wrapper">
+      <!-- <form [formGroup]="form" (ngSubmit)="submit()" class="land-data-form"> -->
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-section">
+          <h2 class="section-title">معلومات الأرض الأساسية</h2>
+          <div class="form-row">
+
+            <!-- كود قطعة الأرض -->
+            <div class="form-group">
+              <label for="landCode">كود قطعة الأرض:<span class="required">*</span></label>
+              <input id="landCode" formControlName="landCode" type="text" placeholder="ادخل كود قطعة الأرض"
+                [class.error]="form.get('landCode')?.touched && form.get('landCode')?.invalid" />
+              @if (form.get('landCode')?.invalid && form.get('landCode')?.touched)
+              {
+              @if (form.get('landCode')?.hasError('required')) {
+              <span class="error-message">كود قطعة الأرض مطلوب</span>
+              }
+              }
+            </div>
+
+            <!-- كود المحافظة -->
+            <div class="form-group">
+              <label for="governorateCode">كود المحافظة:<span class="required">*</span></label>
+              <select formControlName="governorateCode"
+                [class.error]="form.get('governorateCode')?.invalid && form.get('governorateCode')?.touched">
+                <option value="">-- اختر --</option>
+                @for (gov of governorates; track gov.id) {
+                <option [value]="gov.id">{{ gov.name }}</option>
+                }
+              </select>
+              @if (form.get('governorateCode')?.invalid && form.get('governorateCode')?.touched) {
+              <span class="error-message">كود المحافظة مطلوب</span>
+              }
+            </div>
+
+            <!-- عنوان قطعة الأرض -->
+            <div class="form-group">
+              <label for="landAddress">عنوان قطعة الأرض:<span class="required">*</span></label>
+              <input id="landAddress" formControlName="landAddress" type="text" placeholder="ادخل عنوان قطعة الأرض"
+                [class.error]="form.get('landAddress')?.touched && form.get('landCode')?.invalid" />
+              @if (form.get('landAddress')?.invalid && form.get('landAddress')?.touched)
+              {
+              @if (form.get('landAddress')?.hasError('required')) {
+              <span class="error-message">عنوان قطعة الأرض مطلوب</span>
+              }
+              @if (form.get('landAddress')?.hasError('maxlength')) {
+              <span class="error-message">عنوان قطعة الأرض يجب أن يكون أقل من 250 حرف</span>
+              }
+              }
+            </div>
+
+            <!-- اسم مالك الأرض -->
+            <div class="form-group">
+              <label for="landOwnerName">اسم مالك الأرض:<span class="required">*</span></label>
+              <input id="landOwnerName" formControlName="landOwnerName" type="text" placeholder="ادخل اسم مالك الأرض"
+                [class.error]="form.get('landOwnerName')?.touched && form.get('landOwnerName')?.invalid" />
+              @if (form.get('landOwnerName')?.invalid && form.get('landOwnerName')?.touched)
+              {
+              @if (form.get('landOwnerName')?.hasError('required')) {
+              <span class="error-message">اسم مالك الأرض مطلوب</span>
+              }
+              @if (form.get('landOwnerName')?.hasError('maxlength')) {
+              <span class="error-message">اسم مالك الأرض يجب أن يكون أقل من 100 حرف</span>
+              }
+              }
+            </div>
+
+            <!-- عنوان مالك الأرض -->
+            <div class="form-group">
+              <label for="landOwnerAddress">عنوان مالك الأرض:<span class="required">*</span></label>
+              <input id="landOwnerAddress" formControlName="landOwnerAddress" type="text"
+                placeholder="ادخل عنوان مالك الأرض"
+                [class.error]="form.get('landOwnerAddress')?.touched && form.get('landOwnerAddress')?.invalid" />
+              @if (form.get('landOwnerAddress')?.invalid && form.get('landOwnerAddress')?.touched)
+              {
+              @if (form.get('landOwnerAddress')?.hasError('required')) {
+              <span class="error-message">عنوان مالك الأرض مطلوب</span>
+              }
+              @if (form.get('landOwnerAddress')?.hasError('maxlength')) {
+              <span class="error-message">عنوان مالك الأرض يجب أن يكون أقل من 100 حرف</span>
+              }
+              }
+            </div>
+
+            <!-- مساحة الأرض -->
+            <div class="form-group">
+              <label for="totalArea">مساحة الأرض:<span class="required">*</span></label>
+              <input id="totalArea" formControlName="totalArea" type="text" placeholder="ادخل مساحة الأرض"
+                [class.error]="form.get('totalArea')?.touched && form.get('landOwnerAddress')?.invalid" />
+              @if (form.get('totalArea')?.invalid && form.get('landOwnerAddress')?.touched)
+              {
+              @if (form.get('totalArea')?.hasError('required')) {
+              <span class="error-message">مساحة الأرض الكلية مطلوبه</span>
+              }
+              }
+            </div>
+
+            <!-- طبيعة الأرض -->
+            <div class="form-group">
+              <label for="landNature">طبيعة الأرض:<span class="required">*</span></label>
+              <select formControlName="landNature"
+                [class.error]="form.get('landNature')?.invalid && form.get('landNature')?.touched">
+                <option value="">اختر</option>
+                <option value="زراعي">زراعي</option>
+                <option value="مباني">مباني</option>
+              </select>
+              @if (form.get('landNature')?.invalid && form.get('landNature')?.touched) {
+              <span class="error-message">طبيعة الأرض مطلوبة</span>
+              }
+            </div>
+
+            <!-- كود الملكية-->
+            <div class="form-group">
+              <label for="landOwnershipCode">كود الملكية:<span class="required">*</span></label>
+              <select formControlName="landOwnershipCode"
+                [class.error]="form.get('landOwnershipCode')?.invalid && form.get('landOwnershipCode')?.touched">
+                <option value="">-- اختر --</option>
+                @for (land of landOwners; track land.id) {
+                <option [value]="land.id">{{ land.name }}</option>
+                }
+              </select>
+              @if (form.get('landOwnershipCode')?.invalid && form.get('landOwnershipCode')?.touched) {
+              <span class="error-message">كود الملكية مطلوب</span>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- الإحداثيات وأطوال الحدود -->
+        <div class="form-section">
+          <h2 class="section-title">الحدود واطوال الحدود</h2>
+          <div class="form-row">
+            <div class="form-group">
+
+              <!-- الحد الشمالي -->
+              <div class="form-group">
+                <label for="northernBoundary">الحد الشمالي<span class="required">*</span></label>
+                <input id="northernBoundary" formControlName="northernBoundary" type="text" placeholder="الحد الشمالي"
+                  [class.error]="form.get('northernBoundary')?.touched && form.get('northernBoundary')?.invalid" />
+                @if (form.get('northernBoundary')?.invalid && form.get('northernBoundary')?.touched)
+                {
+                @if (form.get('northernBoundary')?.hasError('required')) {
+                <span class="error-message">الحد الشمالي مطلوب</span>
+                }
+                }
+              </div>
+
+              <!-- طول الحد الشمالي -->
+              <div class="form-group">
+                <label for="northernBoundaryLength">الحد الشمالي<span class="required">*</span></label>
+                <input id="northernBoundaryLength" formControlName="northernBoundaryLength" type="text" placeholder="الحد الشمالي"
+                  [class.error]="form.get('northernBoundaryLength')?.touched && form.get('northernBoundaryLength')?.invalid" />
+                @if (form.get('northernBoundaryLength')?.invalid && form.get('northernBoundaryLength')?.touched)
+                {
+                @if (form.get('northernBoundaryLength')?.hasError('required')) {
+                <span class="error-message">طول الحد الشمالي</span>
+                }
+                }
+              </div>
+
+              <div>
+                <input id="northernBoundaryLength" placeholder="الطول الشمالي"
+                  formControlName="northernBoundaryLength" />
+                <div class="error"
+                  *ngIf="form.get('northernBoundaryLength')?.touched && form.get('northernBoundaryLength')?.invalid">❗
+                  مطلوب
+                </div>
+              </div>
+
+              <!-- southernBoundary -->
+              <div>
+                <input id="southernBoundary" placeholder="الحد الجنوبي" formControlName="southernBoundary" />
+                <div class="error"
+                  *ngIf="form.get('southernBoundary')?.touched && form.get('southernBoundary')?.invalid">
+                  ❗
+                  مطلوب</div>
+              </div>
+              <div>
+                <input id="southernBoundaryLength" placeholder="الطول الجنوبي"
+                  formControlName="southernBoundaryLength" />
+                <div class="error"
+                  *ngIf="form.get('southernBoundaryLength')?.touched && form.get('southernBoundaryLength')?.invalid">❗
+                  مطلوب
+                </div>
+              </div>
+
+              <!-- easternBoundary -->
+              <div>
+                <input id="easternBoundary" placeholder="الحد الشرقي" formControlName="easternBoundary" />
+                <div class="error" *ngIf="form.get('easternBoundary')?.touched && form.get('easternBoundary')?.invalid">
+                  ❗
+                  مطلوب</div>
+              </div>
+              <div>
+                <input id="easternBoundaryLength" placeholder="الطول الشرقي" formControlName="easternBoundaryLength" />
+                <div class="error"
+                  *ngIf="form.get('easternBoundaryLength')?.touched && form.get('easternBoundaryLength')?.invalid">❗
+                  مطلوب
+                </div>
+              </div>
+
+              <!-- westernBoundary -->
+              <div>
+                <input id="westernBoundary" placeholder="الحد الغربي" formControlName="westernBoundary" />
+                <div class="error" *ngIf="form.get('westernBoundary')?.touched && form.get('westernBoundary')?.invalid">
+                  ❗
+                  مطلوب</div>
+              </div>
+              <div>
+                <input id="westernBoundaryLength" placeholder="الطول الغربي" formControlName="westernBoundaryLength" />
+                <div class="error"
+                  *ngIf="form.get('westernBoundaryLength')?.touched && form.get('westernBoundaryLength')?.invalid">❗
+                  مطلوب
+                </div>
+              </div>
+
+              <!-- northeastBoundary -->
+              <div>
+                <input id="northeastBoundary" placeholder="الحد الشمالي الشرقي" formControlName="northeastBoundary" />
+                <div class="error"
+                  *ngIf="form.get('northeastBoundary')?.touched && form.get('northeastBoundary')?.invalid">
+                  ❗ مطلوب</div>
+              </div>
+              <div>
+                <input id="northeastBoundaryLength" placeholder="الطول الشمالي الشرقي"
+                  formControlName="northeastBoundaryLength" />
+                <div class="error"
+                  *ngIf="form.get('northeastBoundaryLength')?.touched && form.get('northeastBoundaryLength')?.invalid">❗
+                  مطلوب</div>
+              </div>
+
+              <!-- northwestBoundary -->
+              <div>
+                <input id="northwestBoundary" placeholder="الحد الشمالي الغربي" formControlName="northwestBoundary" />
+                <div class="error"
+                  *ngIf="form.get('northwestBoundary')?.touched && form.get('northwestBoundary')?.invalid">
+                  ❗ مطلوب</div>
+              </div>
+              <div>
+                <input id="northwestBoundaryLength" placeholder="الطول الشمالي الغربي"
+                  formControlName="northwestBoundaryLength" />
+                <div class="error"
+                  *ngIf="form.get('northwestBoundaryLength')?.touched && form.get('northwestBoundaryLength')?.invalid">❗
+                  مطلوب</div>
+              </div>
+
+              <!-- southeastBoundary -->
+              <div>
+                <input id="southeastBoundary" placeholder="الحد الجنوبي الشرقي" formControlName="southeastBoundary" />
+                <div class="error"
+                  *ngIf="form.get('southeastBoundary')?.touched && form.get('southeastBoundary')?.invalid">
+                  ❗ مطلوب</div>
+              </div>
+              <div>
+                <input id="southeastBoundaryLength" placeholder="الطول الجنوبي الشرقي"
+                  formControlName="southeastBoundaryLength" />
+                <div class="error"
+                  *ngIf="form.get('southeastBoundaryLength')?.touched && form.get('southeastBoundaryLength')?.invalid">❗
+                  مطلوب</div>
+              </div>
+
+              <!-- southwestBoundary -->
+              <div>
+                <input id="southwestBoundary" placeholder="الحد الجنوبي الغربي" formControlName="southwestBoundary" />
+                <div class="error"
+                  *ngIf="form.get('southwestBoundary')?.touched && form.get('southwestBoundary')?.invalid">
+                  ❗ مطلوب</div>
+              </div>
+              <div>
+                <input id="southwestBoundaryLength" placeholder="الطول الجنوبي الغربي"
+                  formControlName="southwestBoundaryLength" />
+                <div class="error"
+                  *ngIf="form.get('southwestBoundaryLength')?.touched && form.get('southwestBoundaryLength')?.invalid">❗
+                  مطلوب</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- المسؤول الفني -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="technicalResponsiblePersonId">رقم المسؤول الفني:<span class="required">*</span></label>
+              <input id="technicalResponsiblePersonId" formControlName="technicalResponsiblePersonId" type="text" />
+              <div class="error"
+                *ngIf="form.get('technicalResponsiblePersonId')?.touched && form.get('technicalResponsiblePersonId')?.invalid">
+                ❗ هذا الحقل مطلوب
+              </div>
+            </div>
+          </div>
+
+          <!-- المسؤول القانوني -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="legalResponsiblePersonId">رقم المسؤول القانوني:<span class="required">*</span></label>
+              <input id="legalResponsiblePersonId" formControlName="legalResponsiblePersonId" type="text" />
+              <div class="error"
+                *ngIf="form.get('legalResponsiblePersonId')?.touched && form.get('legalResponsiblePersonId')?.invalid">
+                ❗ هذا الحقل مطلوب
+              </div>
+            </div>
+          </div>
+
+          <!-- تاريخ المعاينة الفنية -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="technicalInspectionDate">تاريخ المعاينة الفنية:<span class="required">*</span></label>
+              <input id="technicalInspectionDate" formControlName="technicalInspectionDate" type="date" />
+              <div class="error"
+                *ngIf="form.get('technicalInspectionDate')?.touched && form.get('technicalInspectionDate')?.invalid">
+                ❗ هذا الحقل مطلوب
+              </div>
+            </div>
+          </div>
+
+          <!-- تاريخ لجنة الاحتياج -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="needsCommitteeDate">تاريخ لجنة الاحتياج:<span class="required">*</span></label>
+              <input id="needsCommitteeDate" formControlName="needsCommitteeDate" type="date" />
+              <div class="error"
+                *ngIf="form.get('needsCommitteeDate')?.touched && form.get('needsCommitteeDate')?.invalid">
+                ❗ هذا الحقل مطلوب
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-submit">حفظ البيانات</button>
+        </div>
+
+    </div>

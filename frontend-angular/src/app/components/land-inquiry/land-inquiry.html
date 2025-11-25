@@ -1,0 +1,838 @@
+<div class="land-inquiry-container">
+  <!-- Shared Header Section -->
+  <app-header [pageTitle]="'الاستعلام عن بيانات قطع الأراضي'"
+    [pageSubtitle]="'البحث في قاعدة بيانات قطع الأراضي المخصصة للمباني التعليمية'" [showBackButton]="true"
+    [showHomeButton]="true" [backButtonLabel]="'العودة'" [backButtonAriaLabel]="'العودة لقائمة المبنى التعليمي'"
+    (backClicked)="goBack()" (homeClicked)="goHome()" (logoutClicked)="logout()">
+  </app-header>
+
+  <div class="container">
+    <div class="page-content">
+      <!-- Search Form -->
+      @if (viewMode() === 'search') {
+      <div class="search-section">
+        <div class="search-card">
+          <h3 class="search-title">
+            <span class="search-icon">🔍</span>
+            بحث عن قطعة أرض
+          </h3>
+          <div class="form-wrapper">
+            <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="referenceNumber" class="form-label">
+                    الرقم التعريفي لقطعة الأرض
+                    <span class="required">*</span>
+                  </label>
+                  <input type="text" id="referenceNumber" formControlName="referenceNumber" class="form-input"
+                    [class.error]="getFieldError('referenceNumber')" placeholder="أدخل الرقم التعريفي (مثال: 132513)"
+                    autocomplete="off" />
+                  @if (getFieldError('referenceNumber')) {
+                  <div class="error-message">
+                    {{ getFieldError('referenceNumber') }}
+                  </div>
+                  }
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="search-btn" [disabled]="isSearching()" [class.loading]="isSearching()">
+                  @if (isSearching()) {
+                  <span class="spinner"></span>
+                  <span>جاري البحث...</span>
+                  } @else {
+                  <span class="btn-icon">🔍</span>
+                  <span>بحث</span>
+                  }
+                </button>
+
+                <button type="button" class="reset-btn" (click)="onReset()" [disabled]="isSearching()">
+                  <span class="btn-icon">🔄</span>
+                  <span>إعادة تعيين</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- Results Section -->
+      @if (hasSearched()) {
+      <div class="results-section">
+        @if (landData()) {
+        <div class="results-header">
+          <h3 class="results-title">
+            <span class="results-icon">📊</span>
+            نتائج البحث
+          </h3>
+        </div>
+
+        <!-- Land Data Display (Direct Display After Search) -->
+        <div class="result-card">
+          <div class="card-header">
+            <h4 class="card-title">
+              <span class="card-icon">🏢</span>
+              بيانات قطعة الأرض - {{ landData()?.referenceNumber }}
+            </h4>
+            <div class="status-badges">
+              <span class="status-badge approval" [class.approved]="landData()?.approvalStatus === 'معتمد'"
+                [class.pending]="landData()?.approvalStatus === 'تحت المراجعة'">
+                <strong>موقف الاعتماد:</strong> {{ landData()?.approvalStatus }}
+              </span>
+              <span class="status-badge usage" [class.active]="landData()?.usageStatus === 'مستخدم'"
+                [class.inactive]="landData()?.usageStatus === 'غير مستخدم'">
+                <strong>موقف الاستخدام:</strong> {{ landData()?.usageStatus }}
+              </span>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <div class="info-grid">
+              <div class="info-section basic-info">
+                <h5 class="section-title">
+                  <span class="section-icon">ℹ️</span>
+                  المعلومات الأساسية
+                </h5>
+                <div class="info-items">
+                  <div class="info-item">
+                    <span class="label">الرقم التعريفي:</span>
+                    <span class="value">{{ landData()?.identificationNumber }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">كود الأرض:</span>
+                    <span class="value">{{ landData()?.landCode }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المقر:</span>
+                    <span class="value">{{ landData()?.headquarters }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المركز/القسم:</span>
+                    <span class="value">{{ landData()?.centerDepartment }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">القرية:</span>
+                    <span class="value">{{ landData()?.village }}</span>
+                  </div>
+                  <div class="info-item highlight">
+                    <span class="label">المساحة الكلية:</span>
+                    <span class="value area">{{ landData()?.totalArea | number:'1.2-2' }} م²</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-section ownership-info">
+                <h5 class="section-title">
+                  <span class="section-icon">👤</span>
+                  معلومات الملكية
+                </h5>
+                <div class="info-items">
+                  <div class="info-item">
+                    <span class="label">المالك الحالي:</span>
+                    <span class="value">{{ landData()?.currentOwner }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المالك الأصلي:</span>
+                    <span class="value">{{ landData()?.originalOwner }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المرحلة:</span>
+                    <span class="value">{{ landData()?.phase }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">النموذج:</span>
+                    <span class="value">{{ landData()?.model }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-section financial-info">
+                <h5 class="section-title">
+                  <span class="section-icon">💰</span>
+                  المعلومات المالية
+                </h5>
+                <div class="info-items">
+                  <div class="info-item">
+                    <span class="label">تسعير اللجنة:</span>
+                    <span class="value price">{{ landData()?.committeePricing | number }} ج.م</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">سعر الشراء:</span>
+                    <span class="value price">{{ landData()?.purchasePrice | number }} ج.م</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">مفاوضات البيع:</span>
+                    <span class="value">{{ landData()?.saleNegotiations }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-section status-info">
+                <h5 class="section-title">
+                  <span class="section-icon">📋</span>
+                  الحالة والمستندات
+                </h5>
+                <div class="info-items">
+                  <div class="info-item">
+                    <span class="label">الاعتماد:</span>
+                    <span class="value status" [class.approved]="landData()?.approval === 'موافق'"
+                      [class.pending]="landData()?.approval === 'قيد الدراسة'">
+                      {{ landData()?.approval }}
+                    </span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">التسكين:</span>
+                    <span class="value">{{ landData()?.housing }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المستندات:</span>
+                    <span class="value documents" [class.complete]="landData()?.documents === 'مكتملة'"
+                      [class.incomplete]="landData()?.documents === 'ناقصة'">
+                      {{ landData()?.documents }}
+                    </span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">الخطة:</span>
+                    <span class="value">{{ landData()?.plan }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">إخطار الفرع:</span>
+                    <span class="value">{{ landData()?.branchNotification }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">موقف العقارية:</span>
+                    <span class="value">{{ landData()?.realEstateStatus }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Options Menu Section -->
+        <div class="options-menu-section">
+          <h3 class="options-title">
+            <span class="options-icon">📋</span>
+            الخيارات المتاحة
+          </h3>
+          <div class="options-grid">
+            <button class="option-card" (click)="navigateToDataAvailability()" type="button">
+              <div class="option-icon">📊</div>
+              <div class="option-content">
+                <h4 class="option-title">توافر البيانات</h4>
+                <p class="option-description">التحقق من توافر البيانات والمستندات</p>
+              </div>
+              <div class="option-arrow">←</div>
+            </button>
+
+            <button class="option-card" (click)="navigateToBuildingInquiry()" type="button">
+              <div class="option-icon">🏗️</div>
+              <div class="option-content">
+                <h4 class="option-title">استعلام المبنى</h4>
+                <p class="option-description">استعلام عن بيانات المبنى</p>
+              </div>
+              <div class="option-arrow">←</div>
+            </button>
+
+            <button class="option-card full-width" (click)="showFullDisplay()" type="button">
+              <div class="option-icon">📄</div>
+              <div class="option-content">
+                <h4 class="option-title">العرض الكامل</h4>
+                <p class="option-description">عرض جميع التفاصيل والبيانات الكاملة</p>
+              </div>
+              <div class="option-arrow">←</div>
+            </button>
+          </div>
+        </div>
+        } @else {
+        <div class="no-results">
+          <div class="no-results-icon">📭</div>
+          <h3 class="no-results-title">لا توجد نتائج</h3>
+          <p class="no-results-message">
+            لم يتم العثور على بيانات لهذا الرقم التعريفي.
+            <br>
+            تأكد من صحة الرقم وحاول مرة أخرى.
+          </p>
+        </div>
+        }
+      </div>
+      }
+
+
+      <!-- Building Inquiry Popup Modal -->
+      @if (showBuildingPopup()) {
+      <div class="popup-overlay" (click)="closeBuildingPopup()">
+        <div class="popup-content" (click)="$event.stopPropagation()">
+          <div class="popup-header">
+            <h3 class="popup-title">
+              <span class="popup-icon">🏗️</span>
+              استعلام المبنى - مواقع البناء
+            </h3>
+            <button class="close-btn" (click)="closeBuildingPopup()" type="button">
+              <span>✕</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            <div class="building-table-container">
+              <table class="building-data-table">
+                <thead>
+                  <tr>
+                    <th>كود الحد</th>
+                    <th>اسم الحد</th>
+                    <th>طول الحد</th>
+                    <th>جار ملاصق</th>
+                    <th>منسوب الجار</th>
+                    <th>الاسوار</th>
+                    <th>وصف الجار</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (building of buildingData() | sortByCode; track building.id) {
+                  <tr class="building-row">
+                    <td class="building-code">{{ building.code }}</td>
+                    <td class="location-name">{{ building.locationName }}</td>
+                    <td class="coordinates">{{ building.coordinates }}</td>
+                    <td class="status">{{ building.status }}</td>
+                    <td class="empty-field">-</td>
+                    <td class="required-status">{{ building.requiredStatus }}</td>
+                    <td class="location-description">{{ building.neighborDescription || 'شارع النيل' }}</td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="popup-footer">
+            <button class="close-popup-btn" (click)="closeBuildingPopup()" type="button">
+              <span class="btn-icon">✕</span>
+              <span>إغلاق</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- Land Coordinates Popup Modal -->
+      @if (showLandCoordinatesPopup()) {
+      <div class="popup-overlay" (click)="closeLandCoordinatesPopup()">
+        <div class="popup-content" (click)="$event.stopPropagation()">
+          <div class="popup-header">
+            <h3 class="popup-title">
+              <span class="popup-icon">📍</span>
+              إحداثيات قطعة الأرض
+            </h3>
+            <button class="close-btn" (click)="closeLandCoordinatesPopup()" type="button">
+              <span>✕</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            <div class="coordinates-container">
+              <div class="coordinate-card">
+                <div class="coordinate-icon">🌍</div>
+                <div class="coordinate-info">
+                  <h4 class="coordinate-label">خط العرض (Latitude)</h4>
+                  <p class="coordinate-value">30.0444° N</p>
+                </div>
+              </div>
+
+              <div class="coordinate-card">
+                <div class="coordinate-icon">🗺️</div>
+                <div class="coordinate-info">
+                  <h4 class="coordinate-label">خط الطول (Longitude)</h4>
+                  <p class="coordinate-value">31.2357° E</p>
+                </div>
+              </div>
+
+              <div class="coordinate-card">
+                <div class="coordinate-icon">📐</div>
+                <div class="coordinate-info">
+                  <h4 class="coordinate-label">المساحة</h4>
+                  <p class="coordinate-value">{{ landData()?.totalArea | number:'1.2-2' }} م²</p>
+                </div>
+              </div>
+
+              <div class="coordinate-card full-width">
+                <div class="coordinate-icon">📍</div>
+                <div class="coordinate-info">
+                  <h4 class="coordinate-label">العنوان</h4>
+                  <p class="coordinate-value">{{ landData()?.headquarters }} - {{ landData()?.village }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="popup-footer">
+            <button class="close-popup-btn" (click)="closeLandCoordinatesPopup()" type="button">
+              <span class="btn-icon">✕</span>
+              <span>إغلاق</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- Land Data Popup Modal -->
+      @if (showLandDataPopup()) {
+      <div class="popup-overlay" (click)="closeLandDataPopup()">
+        <div class="popup-content large" (click)="$event.stopPropagation()">
+          <div class="popup-header">
+            <h3 class="popup-title">
+              <span class="popup-icon">🏞️</span>
+              استعلام عن بيانات قطعة الارض - {{ landData()?.referenceNumber }}
+            </h3>
+            <button class="close-btn" (click)="closeLandDataPopup()" type="button">
+              <span>✕</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            <div class="land-data-grid">
+              <div class="info-section basic-info">
+                <h5 class="section-title">
+                  <span class="section-icon">ℹ️</span>
+                  المعلومات الأساسية
+                </h5>
+                <div class="info-items">
+                  <div class="info-item">
+                    <span class="label">الرقم التعريفي:</span>
+                    <span class="value">{{ landData()?.identificationNumber }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">كود الأرض:</span>
+                    <span class="value">{{ landData()?.landCode }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المقر:</span>
+                    <span class="value">{{ landData()?.headquarters }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المركز/القسم:</span>
+                    <span class="value">{{ landData()?.centerDepartment }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">القرية:</span>
+                    <span class="value">{{ landData()?.village }}</span>
+                  </div>
+                  <div class="info-item highlight">
+                    <span class="label">المساحة الكلية:</span>
+                    <span class="value area">{{ landData()?.totalArea | number:'1.2-2' }} م²</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-section ownership-info">
+                <h5 class="section-title">
+                  <span class="section-icon">👤</span>
+                  معلومات الملكية
+                </h5>
+                <div class="info-items">
+                  <div class="info-item">
+                    <span class="label">المالك الحالي:</span>
+                    <span class="value">{{ landData()?.currentOwner }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المالك الأصلي:</span>
+                    <span class="value">{{ landData()?.originalOwner }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">المرحلة:</span>
+                    <span class="value">{{ landData()?.phase }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">النموذج:</span>
+                    <span class="value">{{ landData()?.model }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="popup-footer">
+            <button class="close-popup-btn" (click)="closeLandDataPopup()" type="button">
+              <span class="btn-icon">✕</span>
+              <span>إغلاق</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- Data Availability Popup Modal -->
+      @if (showDataAvailabilityPopup()) {
+      <div class="popup-overlay" (click)="closeDataAvailabilityPopup()">
+        <div class="popup-content large" (click)="$event.stopPropagation()">
+          <div class="popup-header">
+            <h3 class="popup-title">
+              <span class="popup-icon">📊</span>
+              توافر البيانات
+            </h3>
+            <button class="close-btn" (click)="closeDataAvailabilityPopup()" type="button">
+              <span>✕</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            <div class="availability-grid">
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">👥</span>
+                  <h4 class="availability-title">لجان قطعة الارض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.landCommittees === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.landCommittees }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">📍</span>
+                  <h4 class="availability-title">حدود قطعة الأرض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.buildingBoundaries === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.buildingBoundaries }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">🔌</span>
+                  <h4 class="availability-title">مرافق قطعة الارض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.landFacilities === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.landFacilities }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">🗺️</span>
+                  <h4 class="availability-title">احداثيات قطعة الارض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.landCoordinatesData === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.landCoordinatesData }}</span>
+                </div>
+              </div>
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">🔍</span>
+                  <h4 class="availability-title">ملاحظات معاينة قطعة الارض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.landInspectionDatabase === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.landInspectionDatabase }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">⚠️</span>
+                  <h4 class="availability-title">عوائق إنشاء قطعة الارض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.landCreationObstacles === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.landCreationObstacles }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">📄</span>
+                  <h4 class="availability-title">مستندات قطعة الارض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.landConstructionData === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.landConstructionData }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">📊</span>
+                  <h4 class="availability-title">بيانات الميزانية الشبكية</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.networkData === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.networkData }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">📝</span>
+                  <h4 class="availability-title">ملاحظات الميزانية الشبكية</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.networkObservations === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.networkObservations }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">🔎</span>
+                  <h4 class="availability-title">لجان مراجعة قطعة الارض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.landReviewCommittees === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.landReviewCommittees }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">📚</span>
+                  <h4 class="availability-title">الدراسات التربوية</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.educationalStudies === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.educationalStudies }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">✅</span>
+                  <h4 class="availability-title">موقف استلام قطعة الارض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.landReceiptDatabase === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.landReceiptDatabase }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">💰</span>
+                  <h4 class="availability-title">المبالغ المدفوعة للأرض</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.paidAmountsDatabase === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.paidAmountsDatabase }}</span>
+                </div>
+              </div>
+
+              <div class="availability-card">
+                <div class="availability-header">
+                  <span class="availability-icon">📋</span>
+                  <h4 class="availability-title">بيانات قرار التخصيص</h4>
+                </div>
+                <div class="availability-status" [class.available]="landData()?.decisionData === 'موجود'">
+                  <span class="status-indicator"></span>
+                  <span class="status-text">{{ landData()?.decisionData }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="popup-footer">
+            <button class="close-popup-btn" (click)="closeDataAvailabilityPopup()" type="button">
+              <span class="btn-icon">✕</span>
+              <span>إغلاق</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- Full Display Popup Modal (Empty) -->
+      @if (showFullDisplayPopup()) {
+      <div class="popup-overlay" (click)="closeFullDisplayPopup()">
+        <div class="popup-content full-display-popup" (click)="$event.stopPropagation()">
+          <div class="popup-header">
+            <h3 class="popup-title">
+              <span class="popup-icon">📄</span>
+              العرض الكامل - بيانات المبنى
+            </h3>
+            <button class="close-btn" (click)="closeFullDisplayPopup()" type="button">
+              <span>✕</span>
+            </button>
+          </div>
+
+          <div class="popup-body">
+            @if (isLoadingBuilding()) {
+            <div class="loading-container">
+              <div class="spinner"></div>
+              <p>جاري تحميل بيانات المبنى...</p>
+            </div>
+            } @else if (buildingFullData()) {
+            <div class="building-full-display">
+
+              <!-- Basic Information Section -->
+              <div class="data-section">
+                <h3 class="section-title">البيانات الأساسية</h3>
+                <div class="data-grid">
+                  <div class="data-item">
+                    <label>رقم المبنى:</label>
+                    <span>{{ buildingFullData()?.buildingNumber || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>اسم المدرسة:</label>
+                    <span>{{ buildingFullData()?.schoolName || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>المرحلة:</label>
+                    <span>{{ buildingFullData()?.stage || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>الإدارة التعليمية:</label>
+                    <span>{{ buildingFullData()?.educationalAdministration || '-' }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Usage & Students Section -->
+              <div class="data-section">
+                <h3 class="section-title">الاستخدام وأعداد الطلاب</h3>
+                <div class="data-grid">
+                  <div class="data-item">
+                    <label>فترات الاستخدام:</label>
+                    <span>{{ buildingFullData()?.basicData?.usagePeriods || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>النوع:</label>
+                    <span>{{ buildingFullData()?.basicData?.gender || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>اسم مدرسة الفترة الثانية:</label>
+                    <span>{{ buildingFullData()?.basicData?.secondPeriodSchoolName || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>اسم مدرسة الفترة الثالثة:</label>
+                    <span>{{ buildingFullData()?.basicData?.thirdPeriodSchoolName || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>إجمالي عدد الطلاب:</label>
+                    <span>{{ buildingFullData()?.basicData?.totalStudents || 0 }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>عدد الطلاب (بنين):</label>
+                    <span>{{ buildingFullData()?.basicData?.boysCount || 0 }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>عدد الطلاب (بنات):</label>
+                    <span>{{ buildingFullData()?.basicData?.girlsCount || 0 }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Land & Construction Section -->
+              <div class="data-section">
+                <h3 class="section-title">الأرض والإنشاءات</h3>
+                <div class="data-grid">
+                  <div class="data-item">
+                    <label>ملكية الأرض:</label>
+                    <span>{{ buildingFullData()?.basicData?.landOwnership || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>عدد الملاحق:</label>
+                    <span>{{ buildingFullData()?.basicData?.annexesCount || 0 }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>نوع السور:</label>
+                    <span>{{ buildingFullData()?.basicData?.fenceType || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>نظام الإنشاء:</label>
+                    <span>{{ buildingFullData()?.basicData?.constructionSystem || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>طريقة الإنشاء:</label>
+                    <span>{{ buildingFullData()?.basicData?.constructionMethod || '-' }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Infrastructure Section -->
+              <div class="data-section">
+                <h3 class="section-title">المرافق والبنية التحتية</h3>
+                <div class="data-grid">
+                  <div class="data-item">
+                    <label>مصدر الطاقة:</label>
+                    <span>{{ buildingFullData()?.basicData?.powerSource || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>نظام الصرف الصحي:</label>
+                    <span>{{ buildingFullData()?.basicData?.sewerageSystem || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>مصدر المياه:</label>
+                    <span>{{ buildingFullData()?.basicData?.waterSupply || '-' }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Facilities Count Section -->
+              <div class="data-section">
+                <h3 class="section-title">أعداد المرافق</h3>
+                <div class="data-grid">
+                  <div class="data-item">
+                    <label>عدد الفصول:</label>
+                    <span>{{ buildingFullData()?.basicData?.classroomsCount || 0 }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>عدد الفراغات التعليمية:</label>
+                    <span>{{ buildingFullData()?.basicData?.educationalSpacesCount || 0 }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>الفراغات التكميلية:</label>
+                    <span>{{ buildingFullData()?.basicData?.complementarySpacesCount || 0 }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>موقف الاستضافة:</label>
+                    <span>{{ buildingFullData()?.basicData?.hostingStatus || '-' }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Location Details Section -->
+              <div class="data-section">
+                <h3 class="section-title">بيانات الموقع</h3>
+                <div class="data-grid">
+                  <div class="data-item">
+                    <label>المحافظة:</label>
+                    <span>{{ buildingFullData()?.governorate || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>المديرية:</label>
+                    <span>{{ buildingFullData()?.district || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>القرية:</label>
+                    <span>{{ buildingFullData()?.village || '-' }}</span>
+                  </div>
+                  <div class="data-item">
+                    <label>العنوان:</label>
+                    <span>{{ buildingFullData()?.address || '-' }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+            @else {
+            <div class="empty-message">
+              <div class="empty-icon">📭</div>
+              <h4 class="empty-title">لا توجد بيانات متاحة</h4>
+              <p class="empty-description">لم يتم العثور على بيانات المبنى</p>
+            </div>
+            }
+          </div>
+
+          <div class="popup-footer">
+            <button class="close-popup-btn" (click)="closeFullDisplayPopup()" type="button">
+              <span class="btn-icon">✕</span>
+              <span>إغلاق</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

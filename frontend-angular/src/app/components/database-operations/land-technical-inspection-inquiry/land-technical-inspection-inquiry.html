@@ -1,0 +1,200 @@
+<app-header [pageTitle]="'استعلام عن معاينة فنية لأرض'" [showBackButton]="true" [showHomeButton]="true"
+  [backButtonLabel]="'العودة'" [backButtonAriaLabel]="'العودة للقائمة الرئيسية'" (backClicked)="goBack()"
+  (homeClicked)="goHome()" (logoutClicked)="logout()">
+</app-header>
+
+<div class="container">
+  <div class="page-content">
+    <h1>استعلام عن معاينة فنية لأرض</h1>
+    <p class="subtitle">البحث والاستعلام عن معاينة فنية لأرض</p>
+
+    <div class="form-wrapper">
+      <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="landCode" class="form-label">
+              كود قطعة الأرض
+              <span class="required">*</span>
+            </label>
+            <div class="form-group">
+              <input type="text" id="landCode" formControlName="landCode" class="form-input"
+                [class.error]="getFieldError('landCode')" placeholder="أدخل كود قطعة الأرض (مثال: 132513)"
+                autocomplete="off" />
+              @if (getFieldError('landCode')) {
+              <div class="error-message">
+                {{ getFieldError('landCode') }}
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            <span>🔍</span>
+            بحث
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Results Section -->
+    @if (hasSearched()) {
+    <div class="results-section">
+      @if (selectedLandTechnicalInspection()) {
+      <div class="results-header">
+        <h3 class="results-title">
+          <span class="results-icon">📊</span>
+          نتائج البحث
+        </h3>
+      </div>
+
+      <div class="form-row">
+        <label for="landCode">كود قطعة الأرض:</label>
+        <label id="landCode">{{this.selectedLandTechnicalInspection()?.landCode}}</label>
+      </div>
+
+      <!-- كود المحافظة -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="governorateCode">كود المحافظة:</label>
+          <label id="landCode">{{this.selectedLandTechnicalInspection()?.governorateCode}}</label>
+        </div>
+      </div>
+
+      <!-- عنوان قطعة الأرض -->
+      <div class="form-row">
+        <label for="landAddress">عنوان قطعة الأرض:</label>
+        <span id="landAddress">{{this.selectedLandTechnicalInspection()?.landAddress}}</span>
+      </div>
+
+      <!-- اسم مالك الأرض -->
+      <div class="form-row">
+        <label for="landOwnerName">اسم مالك الأرض:</label>
+        <span id="landOwnerName">{{this.selectedLandTechnicalInspection()?.landOwnerName}}</span>
+      </div>
+
+      <!-- عنوان مالك الأرض -->
+      <div class="form-row">
+        <label for="landOwnerAddress">عنوان مالك الأرض:</label>
+        <span id="landOwnerAddress">{{this.selectedLandTechnicalInspection()?.landOwnerAddress}}</span>
+      </div>
+
+      <!-- مساحة الأرض -->
+      <div class="form-row">
+        <label for="totalArea">مساحة الأرض:</label>
+        <span id="totalArea">{{this.selectedLandTechnicalInspection()?.totalArea}}</span>
+      </div>
+
+      <!-- طبيعة الأرض -->
+      <div class="form-row">
+        <label for="landNature">طبيعة الأرض:</label>
+        <span id="landNature">{{this.selectedLandTechnicalInspection()?.landNature}}</span>
+      </div>
+
+      <!-- كود الملكية -->
+      <div class="form-row">
+        <label for="landOwnershipCode">كود الملكية:</label>
+        <span id="landOwnershipCode">{{this.selectedLandTechnicalInspection()?.landOwnerShipName}}</span>
+      </div>
+
+      <!-- الإحداثيات وأطوال الحدود -->
+      <div class="form-row">
+        <label>الإحداثيات وأطوال الحدود:</label>
+        <div class="boundaries-grid">
+
+          <!-- northernBoundary -->
+          <div>
+            <span id="northernBoundary">{{this.selectedLandTechnicalInspection()?.northernBoundary}}</span>
+          </div>
+          <div>
+            <span id="northernBoundaryLength">{{this.selectedLandTechnicalInspection()?.northernBoundaryLength}}</span>
+          </div>
+
+          <!-- southernBoundary -->
+          <div>
+            <span id="southernBoundary">{{this.selectedLandTechnicalInspection()?.southernBoundary}}</span>
+          </div>
+          <div>
+            <span id="southernBoundaryLength">{{this.selectedLandTechnicalInspection()?.southernBoundaryLength}}</span>
+          </div>
+
+          <!-- easternBoundary -->
+          <div>
+            <span id="easternBoundary">{{this.selectedLandTechnicalInspection()?.easternBoundary}}</span>
+          </div>
+          <div>
+            <span id="easternBoundaryLength">{{this.selectedLandTechnicalInspection()?.easternBoundaryLength}}</span>
+          </div>
+
+          <!-- weasternBoundary -->
+          <div>
+            <span id="westernBoundary">{{this.selectedLandTechnicalInspection()?.westernBoundary}}</span>
+          </div>
+          <div>
+            <span id="westernBoundaryLength">{{this.selectedLandTechnicalInspection()?.westernBoundaryLength}}</span>
+          </div>
+
+          <!-- northeastBoundary -->
+          <div>
+            <span id="northeastBoundary">{{this.selectedLandTechnicalInspection()?.northeastBoundary}}</span>
+          </div>
+          <div>
+            <span
+              id="northeastBoundaryLength">{{this.selectedLandTechnicalInspection()?.northeastBoundaryLength}}</span>
+          </div>
+
+          <!-- NorthwestBoundary -->
+          <div>
+            <span id="northwestBoundary">{{this.selectedLandTechnicalInspection()?.northwestBoundary}}</span>
+          </div>
+          <div>
+            <span
+              id="northwestBoundaryLength">{{this.selectedLandTechnicalInspection()?.northwestBoundaryLength}}</span>
+          </div>
+
+          <!-- SoutheastBoundary -->
+          <div>
+            <span id="southeastBoundary">{{this.selectedLandTechnicalInspection()?.southeastBoundary}}</span>
+          </div>
+          <div>
+            <span
+              id="southeastBoundaryLength">{{this.selectedLandTechnicalInspection()?.southeastBoundaryLength}}</span>
+          </div>
+
+          <!-- SoutheastBoundary -->
+          <div>
+            <span id="southwestBoundary">{{this.selectedLandTechnicalInspection()?.southwestBoundary}}</span>
+          </div>
+          <div>
+            <span
+              id="southwestBoundaryLength">{{this.selectedLandTechnicalInspection()?.southwestBoundaryLength}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- المسؤول الفني -->
+      <div class="form-row">
+        <label for="technicalResponsiblePersonId">رقم المسؤول الفني:</label>
+        <span id="technicalResponsiblePersonId">{{selectedLandTechnicalInspection()?.legalResponsiblePersonId}}</span>
+      </div>
+
+      <!-- المسؤول القانوني -->
+      <div class="form-row">
+        <label for="legalResponsiblePersonId">رقم المسؤول القانوني:</label>
+        <span id="legalResponsiblePersonId">{{this.selectedLandTechnicalInspection()?.legalResponsiblePersonId}}</span>
+      </div>
+
+      <!-- تاريخ المعاينة الفنية -->
+      <div class="form-row">
+        <label for="technicalInspectionDate">تاريخ المعاينة الفنية:</label>
+        <span id="technicalInspectionDate">{{this.selectedLandTechnicalInspection()?.technicalInspectionDate| date:'fullDate'}}</span>
+      </div>
+
+      <!-- تاريخ لجنة الاحتياج -->
+      <div class="form-row">
+        <label for="needsCommitteeDate">تاريخ لجنة الاحتياج:</label>
+        <span id="needsCommitteeDate">{{this.selectedLandTechnicalInspection()?.needsCommitteeDate | date:'fullDate'}}</span>
+      </div>
+      }
+    </div>
+    }

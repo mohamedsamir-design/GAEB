@@ -1,0 +1,66 @@
+	<app-header 
+		[pageTitle]="'تطبيق الاراضي - بيانات المرافق'"
+		[pageSubtitle]="'اختر العملية المطلوبة'"
+		[showBackButton]="true"
+		[showHomeButton]="true"
+		[backButtonLabel]="'العودة'"
+		[backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+		(backClicked)="goBack()"
+		(homeClicked)="goHome()"
+		(logoutClicked)="logout()">
+	</app-header>
+<div class="container">
+
+  <h2 class="title">بحث عن مرافق المبنى</h2>
+
+  <!-- Search Fields -->
+  <div class="search-box">
+
+    <div class="field">
+      <label>رقم المبنى</label>
+      <input type="text" [(ngModel)]="buildingNumber" placeholder="أدخل رقم المبنى">
+    </div>
+
+    <div class="field">
+      <label>اسم المبنى</label>
+      <input type="text" [(ngModel)]="buildingName" placeholder="أدخل اسم المبنى">
+    </div>
+
+    <button class="search-btn" (click)="searchAmenities()">بحث</button>
+  </div>
+
+
+  <!-- TABLE (Appears After Search) -->
+  <div *ngIf="hasSearched" class="results-section">
+
+    <div class="header-row">
+      <h3>المرافق الحالية</h3>
+      <button class="add-btn" (click)="addAmenity()">➕ إضافة مرفق جديد</button>
+    </div>
+
+    <table class="amenities-table" *ngIf="amenities.length > 0">
+
+      <thead>
+        <tr>
+          <th>الرقم المرجعي</th>
+          <th>اسم المرفق</th>
+          <th>الوصف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let a of amenities">
+          <td>{{ a.referenceNumber }}</td>
+          <td>{{ a.name }}</td>
+          <td>{{ a.description }}</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <p *ngIf="amenities.length === 0" class="no-results">
+      لا توجد مرافق مسجلة لهذا المبنى.
+    </p>
+
+  </div>
+</div>

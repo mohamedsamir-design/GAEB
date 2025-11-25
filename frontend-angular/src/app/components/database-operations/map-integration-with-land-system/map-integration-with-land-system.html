@@ -1,0 +1,99 @@
+<div class="applications-menu-container">
+  <app-header 
+    [pageTitle]="' تكامل الخريطة مع نظام الأراضي'"
+    [pageSubtitle]="'اختر العملية المطلوبة'"
+    [showBackButton]="true"
+    [showHomeButton]="true"
+    [backButtonLabel]="'العودة'"
+    [backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+    (backClicked)="goBack()"
+    (homeClicked)="goHome()"
+    (logoutClicked)="logout()">
+  </app-header>
+
+  <main class="applications-menu-main">
+    <div class="menu-container">
+      <h2 class="menu-title">تكامل الخريطة مع نظام الأراضي</h2>
+      <div class="menu-grid">
+
+        <!-- بيانات اللجان -->
+        <div class="menu-card disabled" tabindex="-1" role="button" aria-disabled="true" style="--card-color: #6b7280">
+          <div class="card-icon"><span class="icon">📋</span></div>
+          <div class="card-content">
+            <h3 class="card-title">البيانات الاساسيه للجان الرفع و المراجعة</h3>
+            <p class="card-description">تسجيل البيانات الاساسية للجان الرفع والمراجعة</p>
+          </div>
+        </div>
+
+        <!-- بيانات قطع الاراضي -->
+        <div class="menu-card disabled" tabindex="-1" role="button" aria-disabled="true" style="--card-color: #6b7280">
+          <div class="card-icon"><span class="icon">🗺️</span></div>
+          <div class="card-content">
+            <h3 class="card-title">تسجيل البيانات الاساسيه لقطع الاراضي</h3>
+            <p class="card-description">إدخال البيانات الأساسية لقطع الأراضي</p>
+          </div>
+        </div>
+
+        <!-- اسناد قطع الاراضي -->
+        <div class="menu-card disabled" tabindex="-1" role="button" aria-disabled="true" style="--card-color: #6b7280">
+          <div class="card-icon"><span class="icon">🔗</span></div>
+          <div class="card-content">
+            <h3 class="card-title">اسناد قطع الاراضي الي اللجان</h3>
+            <p class="card-description">إسناد القطع إلى اللجان المختصة</p>
+          </div>
+        </div>
+
+        <!-- البيانات الوصفية -->
+        <div class="menu-card disabled" tabindex="-1" role="button" aria-disabled="true" style="--card-color: #6b7280">
+          <div class="card-icon"><span class="icon">📝</span></div>
+          <div class="card-content">
+            <h3 class="card-title">تسجيل البيانات الوصفيه لقطع الاراضي</h3>
+            <p class="card-description">تسجيل الخصائص الوصفية لكل قطعة أرض</p>
+          </div>
+        </div>
+
+        <!-- البيانات للمحيطات المؤثرة -->
+        <div class="menu-card disabled" tabindex="-1" role="button" aria-disabled="true" style="--card-color: #6b7280">
+          <div class="card-icon"><span class="icon">🌍</span></div>
+          <div class="card-content">
+            <h3 class="card-title">تسجيل البيانات للمحيطات المؤثره</h3>
+            <p class="card-description">تسجيل بيانات المحيطات المؤثرة على قطع الأراضي</p>
+          </div>
+        </div>
+
+        <!-- ربط البيانات بالشئون القانونية (Active) -->
+        <div 
+          class="menu-card"
+          style="--card-color: #10b981"
+          tabindex="0"
+          role="button"
+          aria-label="ربط بيانات الاراضي بالشئون القانونية"
+          (click)="navigateToLinkLandsToLegal()"
+          (keydown.enter)="navigateToLinkLandsToLegal()"
+          (keydown.space)="navigateToLinkLandsToLegal()"
+        >
+          <div class="card-icon"><span class="icon">🛰️</span></div>
+          <div class="card-content">
+            <h3 class="card-title">ربط بيانات الاراضي بالشئون القانونيه</h3>
+            <p class="card-description">ربط بيانات الأراضي بالنظام القانوني</p>
+          </div>
+          <div class="card-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- استعلام عام -->
+        <div class="menu-card disabled" tabindex="-1" role="button" aria-disabled="true" style="--card-color: #6b7280">
+          <div class="card-icon"><span class="icon">🔍</span></div>
+          <div class="card-content">
+            <h3 class="card-title">استعلام عام عن جميع بيانات قطعه الارض</h3>
+            <p class="card-description">عرض كافة البيانات المتعلقة بكل قطعة أرض</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>

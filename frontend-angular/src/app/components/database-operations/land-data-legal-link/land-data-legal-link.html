@@ -1,0 +1,57 @@
+<div class="applications-menu-container">
+	<app-header 
+		[pageTitle]="' ربط بيانات الأراضي بالشئون القانونية'"
+		[pageSubtitle]="'اختر العملية المطلوبة'"
+		[showBackButton]="true"
+		[showHomeButton]="true"
+		[backButtonLabel]="'العودة'"
+		[backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+		(backClicked)="goBack()"
+		(homeClicked)="goHome()"
+		(logoutClicked)="logout()">
+	</app-header>
+
+	<main class="applications-menu-main">
+		<div class="menu-container">
+			<h2 class="menu-title">ربط بيانات الأراضي بالشئون القانونية</h2>
+
+			<section class="link-form-container">
+				<form [formGroup]="form" (ngSubmit)="submit()" class="link-form">
+					<div class="form-row">
+						<label for="landSerialLegal">مسلسل الارض بالشئون القانونية:<span class="required">*</span></label>
+						<input id="landSerialLegal" formControlName="landSerialLegal" type="text" />
+						<div class="error" *ngIf="form.get('landSerialLegal')?.invalid && form.get('landSerialLegal')?.touched">هذا الحقل مطلوب</div>
+					</div>
+
+					<div class="form-row">
+						<label>الرقم التعريفي للمدرسة:</label>
+						<table class="school-table">
+							<thead>
+								<tr>
+									<th>الرقم التعريفي للمدرسة</th>
+									<th>عمليات</th>
+								</tr>
+							</thead>
+							<tbody formArrayName="schoolIds">
+								<tr *ngFor="let ctrl of schoolIds.controls; let i = index">
+									<td>
+										<input [formControlName]="i" />
+										<div class="error" *ngIf="schoolIds.at(i).invalid && schoolIds.at(i).touched">مطلوب</div>
+									</td>
+									<td class="actions-cell">
+										<button type="button" class="btn-small" (click)="removeSchool(i)">حذف</button>
+										<button type="button" class="btn-small" (click)="addSchool()">إضافة صف</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="form-actions">
+						<button type="submit" class="btn-submit">ربط البيانات</button>
+					</div>
+				</form>
+			</section>
+		</div>
+	</main>
+</div>

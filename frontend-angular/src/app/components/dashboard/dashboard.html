@@ -1,0 +1,58 @@
+<div class="dashboard-container">
+  <!-- Shared Header Section -->
+  <app-header 
+    [pageTitle]="'القائمة الرئيسية'"
+    [userInfo]="userInfo()"
+    [showBackButton]="false"
+    [showHomeButton]="false"
+    (logoutClicked)="logout()">
+  </app-header>
+
+  <!-- Main Menu Section -->
+  <main class="dashboard-main">
+    <div class="menu-container">
+      <h2 class="menu-title">اختر الخدمة المطلوبة</h2>
+      
+      <div class="menu-grid">
+        @for (option of menuOptions; track option.id) {
+          <div 
+            class="menu-card"
+            [style.--card-color]="option.color"
+            (click)="onMenuClick(option)"
+            [attr.aria-label]="option.title"
+            tabindex="0"
+            (keydown.enter)="onMenuClick(option)"
+            (keydown.space)="onMenuClick(option)"
+          >
+            <div class="card-icon">
+              <span class="icon">{{ option.icon }}</span>
+            </div>
+            
+            <div class="card-content">
+              <h3 class="card-title">{{ option.title }}</h3>
+              <p class="card-description">{{ option.description }}</p>
+            </div>
+            
+            <div class="card-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path 
+                  d="M9 18L15 12L9 6" 
+                  stroke="currentColor" 
+                  stroke-width="2" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="dashboard-footer">
+    <p class="footer-text">© 2025 - جميع الحقوق محفوظة</p>
+    <p class="footer-support">للدعم الفني اتصل بالإدارة</p>
+  </footer>
+</div>

@@ -1,0 +1,63 @@
+<div class="applications-container">
+  <!-- Shared Header Section -->
+  <app-header 
+    [pageTitle]="'القائمة الرئيسية للتطبيقات'"
+    [pageSubtitle]="'اختر التطبيق المطلوب من القائمة أدناه'"
+    [showBackButton]="true"
+    [showHomeButton]="true"
+    [backButtonLabel]="'العودة'"
+    [backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+    (backClicked)="goBack()"
+    (homeClicked)="goHome()"
+    (logoutClicked)="logout()">
+  </app-header>
+
+  <!-- Applications Grid -->
+  <main class="applications-main" role="main" aria-label="قائمة التطبيقات">
+    <div class="applications-grid" role="grid" aria-label="شبكة التطبيقات المتاحة">
+      @for (app of applications; track app.id) {
+        <div 
+          class="application-card"
+          [style.--app-color]="app.color"
+          (click)="openApplication(app)"
+          role="button"
+          [attr.aria-label]="'فتح تطبيق ' + app.name + ' في فئة ' + app.category"
+          [attr.aria-describedby]="'app-desc-' + app.id"
+          tabindex="0"
+          (keydown.enter)="openApplication(app)"
+          (keydown.space)="$event.preventDefault(); openApplication(app)"
+        >
+          <div class="app-icon">
+            <span class="icon">{{ app.icon }}</span>
+          </div>
+          
+          <div class="app-content">
+            <h3 class="app-name">{{ app.name }}</h3>
+            <p class="app-description">{{ app.description }}</p>
+            @if (app.category) {
+              <span class="app-category">{{ app.category }}</span>
+            }
+          </div>
+          
+          <div class="app-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path 
+                d="M9 18L15 12L9 6" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+      }
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="applications-footer">
+    <p class="footer-text">عدد التطبيقات المتاحة: {{ applications.length }}</p>
+    <p class="footer-support">للدعم الفني أو الاستفسارات اتصل بالإدارة</p>
+  </footer>
+</div>

@@ -1,0 +1,83 @@
+<div class="applications-menu-container">
+	<app-header [pageTitle]="'قائمة تسجيل ممتلكات الهيئة'" [pageSubtitle]="'اختر العملية المطلوبة'"
+		[showBackButton]="true" [showHomeButton]="true" [backButtonLabel]="'العودة'"
+		[backButtonAriaLabel]="'العودة للقائمة الرئيسية'" (backClicked)="goBack()" (homeClicked)="goHome()"
+		(logoutClicked)="logout()">
+	</app-header>
+
+	<main class="applications-menu-main">
+		<div class="menu-container">
+			<h2 class="menu-title"> قائمة الاستعلام</h2>
+			<div class="menu-grid">
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🔍</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">استعلام عن اجراءات التعاقد على الأراضي</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+				</div>
+
+				<!-- ✅ ACTIVE CARD (ONLY ONE CLICKABLE) -->
+				<div class="menu-card" style="--card-color: #3b82f6" tabindex="0" role="button"
+					(click)="navigateToLandTechnicalInspectionInquiry()" (keydown.enter)="navigateToLandTechnicalInspectionInquiry()"
+					(keydown.space)="navigateToLandTechnicalInspectionInquiry()">
+					<div class="card-icon">
+						<span class="icon">🔍</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">استعلام عن المعاينة الفنية للأراضي</h3>
+						<p class="card-description">استعلام عن المعاينة الفنية للأراضي</p>
+					</div>
+				</div>
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🔍</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">استعلام عن الموقف القانوني للأراضي</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+				</div>
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🔍</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">استعلام عن التسجيل في الشهر العقاري</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+				</div>
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🔍</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">استعلام المستندات للأراضي والمدارس</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+				</div>
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🔍</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">استعلام عن الأراضي والمدارس الغير مسجلة</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>

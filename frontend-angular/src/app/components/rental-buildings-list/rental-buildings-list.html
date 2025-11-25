@@ -1,0 +1,32 @@
+<app-header 
+  [pageTitle]="'قائمة المباني المؤجرة'"
+  [showBackButton]="true"
+  [showHomeButton]="true"
+  (backClicked)="navigateBack()"
+  (homeClicked)="goHome()"
+  (logoutClicked)="logout()"
+></app-header>
+
+<div class="container">
+  <div class="page-content">
+    <h1>قائمة المباني المؤجرة</h1>
+    <p class="subtitle">مدارس مؤجرة (صدر لها قرار مجلس محلي)</p>
+
+    <div class="buildings-list">
+      @for (building of buildings(); track building.id) {
+        <div (click)="selectBuilding(building.id)" class="building-item">
+          <div class="building-info">
+            <h3>{{ building.name }}</h3>
+            <div class="building-details">
+              <span class="status" [class.rented]="building.status === 'مؤجرة'">
+                {{ building.status }}
+              </span>
+              <span class="tenant">{{ building.tenant }}</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

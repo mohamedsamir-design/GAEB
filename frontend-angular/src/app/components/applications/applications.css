@@ -1,0 +1,248 @@
+/* Applications Container */
+.applications-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+/* Main Content */
+.applications-main {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Applications Grid */
+.applications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Application Cards */
+.application-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.application-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, var(--app-color) 0%, var(--app-color-dark, var(--app-color)) 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.application-card::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.application-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  border-color: var(--app-color);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.application-card:hover::before {
+  width: 8px;
+  box-shadow: 0 0 20px var(--app-color);
+}
+
+.application-card:hover::after {
+  opacity: 1;
+  top: -50%;
+  left: -50%;
+}
+
+.application-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+/* App Icon */
+.app-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--app-color), color-mix(in srgb, var(--app-color) 80%, #000));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.app-icon .icon {
+  font-size: 24px;
+  filter: brightness(1.1);
+}
+
+/* App Content */
+.app-content {
+  flex: 1;
+  text-align: right;
+}
+
+.app-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.app-description {
+  font-size: 13px;
+  color: #718096;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+.app-category {
+  display: inline-block;
+  background: color-mix(in srgb, var(--app-color) 10%, transparent);
+  color: var(--app-color);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--app-color) 20%, transparent);
+}
+
+/* App Arrow */
+.app-arrow {
+  flex-shrink: 0;
+  color: var(--app-color);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  transform: scaleX(-1); /* Flip for RTL */
+}
+
+.application-card:hover .app-arrow {
+  opacity: 1;
+  transform: translateX(-4px) scaleX(-1);
+}
+
+/* Footer */
+.applications-footer {
+  background: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+  padding: 20px 32px;
+  text-align: center;
+  margin-top: 32px;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.footer-support {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .applications-main {
+    padding: 20px 16px;
+  }
+
+  .applications-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .application-card {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .app-content {
+    text-align: center;
+  }
+
+  .app-arrow {
+    display: none;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .applications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .application-card {
+    padding: 16px;
+  }
+
+  .app-name {
+    font-size: 15px;
+  }
+
+  .app-description {
+    font-size: 12px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .application-card,
+  .app-arrow,
+  .application-card::before {
+    transition: none;
+  }
+
+  .application-card:hover {
+    transform: none;
+  }
+
+  .application-card:hover .app-arrow {
+    transform: scaleX(-1);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .application-card {
+    border: 2px solid #000;
+  }
+
+  .application-card:hover,
+  .application-card:focus {
+    border-color: var(--app-color);
+    outline: 2px solid #000;
+  }
+}

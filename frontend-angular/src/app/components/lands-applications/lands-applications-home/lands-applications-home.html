@@ -1,0 +1,48 @@
+<div class="applications-menu-container">
+	<app-header 
+		[pageTitle]="'تطبيق الاراضي'"
+		[pageSubtitle]="'اختر العملية المطلوبة'"
+		[showBackButton]="true"
+		[showHomeButton]="true"
+		[backButtonLabel]="'العودة'"
+		[backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+		(backClicked)="goBack()"
+		(homeClicked)="goHome()"
+		(logoutClicked)="logout()">
+	</app-header>
+
+	<main class="applications-menu-main">
+		<div class="menu-container">
+			<h2 class="menu-title">تطبيق الاراضي</h2>
+			<div class="menu-grid">
+				<div 
+					class="menu-card"
+					style="--card-color: #3b82f6"
+					tabindex="0"
+					role="button"
+					(click)="navigateToLandsMainMenu()"
+					(keydown.enter)="navigateToLandsMainMenu()"
+					(keydown.space)="navigateToLandsMainMenu ()"
+				>
+					<div class="card-icon">
+						<span class="icon">🏞️</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">القائمة الرئيسية لتطبيق الاراضي</h3>
+					</div>
+					<div class="card-arrow">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path 
+								d="M8 12L16 12M16 12L12 8M16 12L12 16" 
+								stroke="currentColor" 
+								stroke-width="2" 
+								stroke-linecap="round" 
+								stroke-linejoin="round"
+							/>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>

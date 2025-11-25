@@ -1,0 +1,369 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\controllers\\landtechnicalinspectioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\controllers\\landtechnicalinspectioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\controllers\\buildingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\controllers\\buildingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\models\\landtechnicalinspectiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\models\\landtechnicalinspectiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\controllers\\lookupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\controllers\\lookupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\controllers\\landscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\controllers\\landscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\models\\landowner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\models\\landowner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\models\\landdatainsertiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\models\\landdatainsertiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\models\\landandlegalconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\models\\landandlegalconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\models\\landandlegalconnectiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\models\\landandlegalconnectiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\models\\land.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\models\\land.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\controllers\\rentalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\controllers\\rentalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\setup-rental-schema.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\setup-rental-schema.ps1||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\seed-output.log||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\seed-output.log||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\migrate-educational-buildings.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\migrate-educational-buildings.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\add-rental-building-columns.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\add-rental-building-columns.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\add-building-columns.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\add-building-columns.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\controllers\\displacementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\controllers\\displacementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\migrate-educational-buildings.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\migrate-educational-buildings.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\add-rental-building-columns.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\add-rental-building-columns.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|c:\\users\\mohamed\\downloads\\poc-20251108t210530z-1-001\\angular-project\\backend-dotnet\\add-building-columns.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{BC225EFD-0BEC-2F8F-A64C-831F86904FF1}|backend-dotnet\\AngularProjectApi.csproj|solutionrelative:backend-dotnet\\add-building-columns.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LandTechnicalInspectionController.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\LandTechnicalInspectionController.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Controllers\\LandTechnicalInspectionController.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\LandTechnicalInspectionController.cs",
+              "RelativeToolTip": "backend-dotnet\\Controllers\\LandTechnicalInspectionController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAjwEAAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T13:22:52.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Program.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Program.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Program.cs",
+              "RelativeToolTip": "backend-dotnet\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T15:44:54.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LandsController.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\LandsController.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Controllers\\LandsController.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\LandsController.cs",
+              "RelativeToolTip": "backend-dotnet\\Controllers\\LandsController.cs",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAewOEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T08:18:54.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LandDataInsertionDTO.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandDataInsertionDTO.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Models\\LandDataInsertionDTO.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandDataInsertionDTO.cs",
+              "RelativeToolTip": "backend-dotnet\\Models\\LandDataInsertionDTO.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAIBQwCgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:32:18.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LandTechnicalInspectionDTO.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandTechnicalInspectionDTO.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Models\\LandTechnicalInspectionDTO.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandTechnicalInspectionDTO.cs",
+              "RelativeToolTip": "backend-dotnet\\Models\\LandTechnicalInspectionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T12:57:47.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BuildingsController.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\BuildingsController.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Controllers\\BuildingsController.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\BuildingsController.cs",
+              "RelativeToolTip": "backend-dotnet\\Controllers\\BuildingsController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAACAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T14:07:02.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "backend-dotnet\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T10:13:27.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LandOwner.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandOwner.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Models\\LandOwner.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandOwner.cs",
+              "RelativeToolTip": "backend-dotnet\\Models\\LandOwner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T12:49:44.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LandAndLegalConnectionDTO.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandAndLegalConnectionDTO.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Models\\LandAndLegalConnectionDTO.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandAndLegalConnectionDTO.cs",
+              "RelativeToolTip": "backend-dotnet\\Models\\LandAndLegalConnectionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T10:31:54.888Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LookupController.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\LookupController.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Controllers\\LookupController.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\LookupController.cs",
+              "RelativeToolTip": "backend-dotnet\\Controllers\\LookupController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T12:10:29.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Land.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\Land.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Models\\Land.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\Land.cs",
+              "RelativeToolTip": "backend-dotnet\\Models\\Land.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:41:34.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LandAndLegalConnection.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandAndLegalConnection.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Models\\LandAndLegalConnection.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Models\\LandAndLegalConnection.cs",
+              "RelativeToolTip": "backend-dotnet\\Models\\LandAndLegalConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T10:14:39.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "seed-output.log",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\seed-output.log",
+              "RelativeDocumentMoniker": "backend-dotnet\\seed-output.log",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\seed-output.log",
+              "RelativeToolTip": "backend-dotnet\\seed-output.log",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-11-17T14:12:38.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "backend-dotnet\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Properties\\launchSettings.json",
+              "RelativeToolTip": "backend-dotnet\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAASwBIAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-21T02:16:22.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RentalsController.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\RentalsController.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Controllers\\RentalsController.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\RentalsController.cs",
+              "RelativeToolTip": "backend-dotnet\\Controllers\\RentalsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T14:26:53.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "migrate-educational-buildings.sql ",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\migrate-educational-buildings.sql",
+              "RelativeDocumentMoniker": "backend-dotnet\\migrate-educational-buildings.sql",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\migrate-educational-buildings.sql",
+              "RelativeToolTip": "backend-dotnet\\migrate-educational-buildings.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-11-17T14:12:01.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "setup-rental-schema.ps1",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\setup-rental-schema.ps1",
+              "RelativeDocumentMoniker": "backend-dotnet\\setup-rental-schema.ps1",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\setup-rental-schema.ps1",
+              "RelativeToolTip": "backend-dotnet\\setup-rental-schema.ps1",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-11-17T14:12:40.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "DisplacementsController.cs",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\DisplacementsController.cs",
+              "RelativeDocumentMoniker": "backend-dotnet\\Controllers\\DisplacementsController.cs",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\Controllers\\DisplacementsController.cs",
+              "RelativeToolTip": "backend-dotnet\\Controllers\\DisplacementsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T09:26:46.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "add-building-columns.sql ",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\add-building-columns.sql",
+              "RelativeDocumentMoniker": "backend-dotnet\\add-building-columns.sql",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\add-building-columns.sql",
+              "RelativeToolTip": "backend-dotnet\\add-building-columns.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-11-09T00:06:14.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "add-rental-building-columns.sql ",
+              "DocumentMoniker": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\add-rental-building-columns.sql",
+              "RelativeDocumentMoniker": "backend-dotnet\\add-rental-building-columns.sql",
+              "ToolTip": "C:\\Users\\mohamed\\Downloads\\POC-20251108T210530Z-1-001\\angular-project\\backend-dotnet\\add-rental-building-columns.sql",
+              "RelativeToolTip": "backend-dotnet\\add-rental-building-columns.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-11-09T00:06:12.547Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

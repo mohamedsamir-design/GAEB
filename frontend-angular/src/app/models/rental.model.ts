@@ -1,0 +1,123 @@
+/**
+ * Rental Building Info
+ * Basic rental building information
+ */
+export interface RentalBuildingInfo {
+  id: string;
+  identificationNumber: string;
+  name: string;
+  status: string;
+  substatus: string;
+  tenant?: string;
+  location?: string;
+  monthlyRent?: number;
+  contractStartDate?: string;
+  contractEndDate?: string;
+}
+
+/**
+ * Rental Building Details
+ * Extended rental building information with all fields
+ */
+export interface RentalBuildingDetails extends RentalBuildingInfo {
+  buildingType: string;
+  totalArea: number;
+  usableArea: number;
+  numberOfRooms: number;
+  numberOfFloors: number;
+  yearBuilt: number;
+  lastInspectionDate?: string;
+  inspectionStatus?: string;
+  maintenanceRequired?: boolean;
+  
+  // Additional fields from Buildings table
+  governorate?: string;
+  regionalCenter?: string;
+  educationalAdministration?: string;
+  educationType?: string;
+  affiliation?: string;
+  usageStatus?: string;
+  stage?: string;
+  buildingOwnership?: string;
+  
+  // Additional fields from BuildingBasicData table
+  usagePeriods?: string;
+  gender?: string;
+  secondPeriodSchoolName?: string;
+  thirdPeriodSchoolName?: string;
+  totalStudents?: number;
+  boysCount?: number;
+  girlsCount?: number;
+  landOwnership?: string;
+  landArea?: number;
+  builtArea?: number;
+  annexesCount?: number;
+  fenceType?: string;
+  constructionSystem?: string;
+  constructionMethod?: string;
+  powerSource?: string;
+  sewerageSystem?: string;
+  waterSupply?: string;
+  classroomsCount?: number;
+  educationalSpacesCount?: number;
+  hostingStatus?: string;
+  complementarySpacesCount?: number;
+}
+
+/**
+ * Rental Building Location
+ * Geographic and administrative location data
+ */
+export interface RentalBuildingLocation {
+  id: string;
+  buildingId: string;
+  governorate: string;
+  city: string;
+  district: string;
+  neighborhood: string;
+  street: string;
+  buildingNumber: string;
+  postalCode?: string;
+  latitude?: number;
+  longitude?: number;
+}
+
+/**
+ * Rental Status Flag
+ * Status indicators for rental buildings
+ */
+export interface RentalStatusFlag {
+  id: string;
+  code: string;
+  label: string;
+  category: string;
+  isActive: boolean;
+}
+
+/**
+ * Rental Decision
+ * Approval and decision records for rental buildings
+ */
+export interface RentalDecision {
+  id: string;
+  buildingId: string;
+  decisionNumber: string;
+  decisionDate: string;
+  decisionType: string;
+  approvedBy: string;
+  notes?: string;
+}
+
+/**
+ * Rental Report Category
+ * Statistical categories for rental status reporting
+ */
+export interface RentalReportCategory {
+  id: string;
+  code: string;
+  label: string;
+  categoryType: 'in-progress' | 'completed' | 'finished';
+  totalCount: number;
+  closedCount: number;
+  workingCount: number;
+}

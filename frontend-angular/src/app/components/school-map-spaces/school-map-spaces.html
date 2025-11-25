@@ -1,0 +1,52 @@
+<app-header 
+  [pageTitle]="'تسجيل بيانات الفراغات'"
+  [showBackButton]="true"
+  [showHomeButton]="true"
+  (backClicked)="navigateBack()"
+  (homeClicked)="goHome()"
+  (logoutClicked)="logout()"
+></app-header>
+
+<div class="container">
+  <div class="page-content">
+    <h1>تسجيل بيانات الفراغات</h1>
+    
+    <div class="school-info">
+      <div class="school-info-item">
+        <span class="info-label">رقم المبني:</span>
+        <span class="info-value">{{ schoolNumber() }}</span>
+      </div>
+      <div class="school-info-item">
+        <span class="info-label">اسم المدرسة:</span>
+        <span class="info-value">{{ schoolName() }}</span>
+      </div>
+    </div>
+
+    <div class="spaces-table">
+      <table>
+        <thead>
+          <tr>
+            <th>ملحق</th>
+            <th>دور</th>
+            <th>الكود</th>
+            <th>مسلسل</th>
+            <th>اسم الفرع</th>
+            <th>المساحة</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (space of spaces; track space.code) {
+            <tr>
+              <td>{{ space.annex }}</td>
+              <td>{{ space.floor }}</td>
+              <td>{{ space.code }}</td>
+              <td>{{ space.serial }}</td>
+              <td>{{ space.branchName }}</td>
+              <td>{{ space.area }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

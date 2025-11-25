@@ -1,0 +1,205 @@
+<div class="applications-menu-container">
+	<app-header [pageTitle]="' قائمة تسجيل ممتلكات الهيئة'" [pageSubtitle]="'اختر العملية المطلوبة'"
+		[showBackButton]="true" [showHomeButton]="true" [backButtonLabel]="'العودة'"
+		[backButtonAriaLabel]="'العودة للقائمة الرئيسية'" (backClicked)="goBack()" (homeClicked)="goHome()"
+		(logoutClicked)="logout()">
+	</app-header>
+
+	<main class="applications-menu-main">
+		<div class="menu-container">
+			<h2 class="menu-title"> قائمة برامج الإدخال</h2>
+			<div class="menu-grid">
+				<div class="menu-card" style="--card-color: #3b82f6" tabindex="0" role="button"
+					(click)="navigateToLandTechnicalInspection()" (keydown.enter)="navigateToLandTechnicalInspection()"
+					(keydown.space)="navigateToLandTechnicalInspection()">
+					<div class="card-icon">
+						<span class="icon">🗺️</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">المعاينة الفنية للأراضي</h3>
+						<p class="card-description">إدخال بيانات المعاينة الفنية للأراضي</p>
+					</div>
+					<div class="card-arrow">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+				</div>
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🗺️</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">الموقف القانوني للأراضي</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+					<div class="card-arrow">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+				</div>
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🗺️</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">اجراءات التعاقد لشراء للأراضي</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+					<div class="card-arrow">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+				</div>
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🗺️</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">معوقات التسجيل في الشهر العقاري</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+					<div class="card-arrow">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+				</div>
+
+				<!-- ❌ DISABLED CARD 1 -->
+				<div class="menu-card disabled-card">
+					<div class="card-icon">
+						<span class="icon">🗺️</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">التسجيل في الشهر العقاري</h3>
+						<p class="card-description">غير متاح حاليا</p>
+					</div>
+					<div class="card-arrow">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+				</div>
+
+				<div class="menu-card" style="--card-color: #3b82f6" tabindex="0" role="button"
+					(click)="navigateToLinkLandsToMap()" (keydown.enter)="navigateToLinkLandsToMap()"
+					(keydown.space)="navigateToLinkLandsToMap()">
+					<div class="card-icon">
+						<span class="icon">🗺️</span>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">تكامل الخريطة مع نظام الأراضي</h3>
+						<p class="card-description">تكامل الخريطة مع نظام الأراضي</p>
+					</div>
+					<div class="card-arrow">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+								stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+				</div>
+
+			<!-- ❌ DISABLED CARD 1 -->
+			<div class="menu-card disabled-card">
+				<div class="card-icon">
+					<span class="icon">🗺️</span>
+				</div>
+				<div class="card-content">
+					<h3 class="card-title">أبداء الرأي القانوني (للمحامين)</h3>
+					<p class="card-description">غير متاح حاليا</p>
+				</div>
+				<div class="card-arrow">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</div>
+			</div>
+
+
+			<!-- ❌ DISABLED CARD 1 -->
+			<div class="menu-card disabled-card">
+				<div class="card-icon">
+					<span class="icon">🗺️</span>
+				</div>
+				<div class="card-content">
+					<h3 class="card-title">قائمة أراضي الدولة بدون مقابل</h3>
+					<p class="card-description">غير متاح حاليا</p>
+				</div>
+				<div class="card-arrow">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</div>
+			</div>
+
+			<!-- ❌ DISABLED CARD 1 -->
+			<div class="menu-card disabled-card">
+				<div class="card-icon">
+					<span class="icon">🗺️</span>
+				</div>
+				<div class="card-content">
+					<h3 class="card-title">الأراضي الملغاة والجاري العمل بها</h3>
+					<p class="card-description">غير متاح حاليا</p>
+				</div>
+				<div class="card-arrow">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</div>
+			</div>
+
+			<!-- ❌ DISABLED CARD 1 -->
+			<div class="menu-card disabled-card">
+				<div class="card-icon">
+					<span class="icon">🗺️</span>
+				</div>
+				<div class="card-content">
+					<h3 class="card-title">الموافقات للأراضي الجاري العمل بها</h3>
+					<p class="card-description">غير متاح حاليا</p>
+				</div>
+				<div class="card-arrow">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</div>
+			</div>
+
+			<!-- ❌ DISABLED CARD 1 -->
+			<div class="menu-card disabled-card">
+				<div class="card-icon">
+					<span class="icon">🗺️</span>
+				</div>
+				<div class="card-content">
+					<h3 class="card-title">الموقف المالي للأراضي</h3>
+					<p class="card-description">غير متاح حاليا</p>
+				</div>
+				<div class="card-arrow">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</div>
+			</div>
+
+		</div>
+</div>
+</main>
+</div>
