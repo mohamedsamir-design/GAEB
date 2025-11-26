@@ -1,0 +1,86 @@
+<app-header 
+  [pageTitle]="'تطبيق الاراضي - بيانات الحدود'"
+  [showBackButton]="true"
+  [showHomeButton]="true"
+  [backButtonLabel]="'العودة'"
+  [backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+  (backClicked)="goBack()"
+  (homeClicked)="goHome()"
+  (logoutClicked)="logout()">
+</app-header>
+
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="search()" class="search-form">
+    <label for="buildingNumber">رقم المبني</label>
+    <input id="buildingNumber" type="text" formControlName="buildingNumber" placeholder="ادخل رقم المبني">
+    <button type="submit">بحث</button>
+  </form>
+
+  <div *ngIf="borders.length > 0">
+    <button class="add-border-btn" (click)="openModal()">إضافة حد</button>
+
+    <table class="borders-table">
+      <thead>
+        <tr>
+          <th>اسم الحد</th>
+          <th>طولة</th>
+          <th>متاح</th>
+          <th>منسوب الجار</th>
+          <th>وصف الجار</th>
+          <th>سور</th>
+          <th>إجراء</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let border of borders; index as i">
+          <td>{{ border.name }}</td>
+          <td>{{ border.length }}</td>
+          <td>{{ border.available ? 'متاح' : 'غير متاح' }}</td>
+          <td>{{ border.neighborLevel }}</td>
+          <td>{{ border.neighborDescription }}</td>
+          <td>{{ border.fenceRequired ? 'مطلوب' : 'غير مطلوب' }}</td>
+          <td>
+            <button (click)="openModal(border, i)">تعديل</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Custom Modal -->
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>بيانات الحد</h3>
+      <button class="close-btn" (click)="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="borderForm">
+        <label>اسم الحد</label>
+        <select formControlName="name">
+          <option *ngFor="let name of borderNames" [value]="name">{{ name }}</option>
+        </select>
+
+        <label>طولة</label>
+        <input type="number" formControlName="length">
+
+        <label>متاح</label>
+        <input type="checkbox" formControlName="available">
+
+        <label>منسوب الجار</label>
+        <input type="text" formControlName="neighborLevel">
+
+        <label>وصف الجار</label>
+        <input type="text" formControlName="neighborDescription">
+
+        <label>سور</label>
+        <input type="checkbox" formControlName="fenceRequired">
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="closeModal()">إلغاء</button>
+      <button (click)="submitBorder()">حفظ</button>
+    </div>
+  </div>
+</div>

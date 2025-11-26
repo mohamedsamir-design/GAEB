@@ -26,8 +26,8 @@ navigateTo(type: string) {
   this.closeMetadataModal();
 
   switch (type) {
-    case 'boundaries':
-      this.router.navigate(['/land/boundaries']);
+    case 'school-borders-data-insertion':
+      this.router.navigate(['/school-borders-data-insertion']);
       break;
 
     case 'building-amenities':
@@ -53,7 +53,7 @@ navigateTo(type: string) {
   }
   navigateToBasicLandData() {
     // Route to: تسجيل البيانات الأساسية لقطع الأراضي
-    this.router.navigate(['/login']);
+    this.router.navigate(['/main-school-data-insertion']);
   }
 
   navigateToLandMetadata() {

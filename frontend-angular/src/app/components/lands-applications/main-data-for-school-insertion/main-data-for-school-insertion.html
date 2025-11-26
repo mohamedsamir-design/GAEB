@@ -1,0 +1,88 @@
+<app-header 
+  [pageTitle]="'تطبيق الأراضي - تسجيل البيانات الأساسية لقطع الأراضي (المدرسة / المنشأة)'"
+  [showBackButton]="true"
+  [showHomeButton]="true"
+  [backButtonLabel]="'العودة'"
+  [backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+  (backClicked)="goBack()"
+  (homeClicked)="goHome()"
+  (logoutClicked)="logout()">
+</app-header>
+
+<br>
+<div class="form-container">
+  <form [formGroup]="landForm" (ngSubmit)="submit()">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>رقم قطعه الارض <span class="required">*</span></label>
+        <input type="text" formControlName="landNumber" />
+        <div class="error" *ngIf="landForm.get('landNumber')?.touched && landForm.get('landNumber')?.invalid">
+          يرجى ادخال رقم قطعة الأرض
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>مسمي قطعه الارض <span class="required">*</span></label>
+        <input type="text" formControlName="landName" />
+        <div class="error" *ngIf="landForm.get('landName')?.touched && landForm.get('landName')?.invalid">
+          يرجى ادخال مسمى قطعة الأرض
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>مركز/قسم <span class="required">*</span></label>
+        <select formControlName="center">
+          <option value="">اختر...</option>
+          <option *ngFor="let c of centers" [value]="c">{{ c }}</option>
+        </select>
+        <div class="error" *ngIf="landForm.get('center')?.touched && landForm.get('center')?.invalid">
+          يرجى اختيار المركز / القسم
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>قريه/حي <span class="required">*</span></label>
+        <select formControlName="village">
+          <option value="">اختر...</option>
+          <option *ngFor="let v of villages" [value]="v">{{ v }}</option>
+        </select>
+        <div class="error" *ngIf="landForm.get('village')?.touched && landForm.get('village')?.invalid">
+          يرجى اختيار القرية / الحي
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>تابع قرية / شياخة <span class="required">*</span></label>
+        <input type="text" formControlName="subVillage" />
+        <div class="error" *ngIf="landForm.get('subVillage')?.touched && landForm.get('subVillage')?.invalid">
+          يرجى ادخال التابع للقرية / الشياخة
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>المساحة الكلية <span class="required">*</span></label>
+        <input type="number" formControlName="totalArea" />
+        <div class="error" *ngIf="landForm.get('totalArea')?.touched && landForm.get('totalArea')?.invalid">
+          يرجى ادخال المساحة الكلية
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>مالك الارض <span class="required">*</span></label>
+        <select formControlName="owner">
+          <option value="">اختر...</option>
+          <option *ngFor="let o of owners" [value]="o">{{ o }}</option>
+        </select>
+        <div class="error" *ngIf="landForm.get('owner')?.touched && landForm.get('owner')?.invalid">
+          يرجى اختيار مالك الأرض
+        </div>
+      </div>
+
+    </div>
+
+    <button type="submit" class="submit-btn">حفظ</button>
+
+  </form>
+</div>

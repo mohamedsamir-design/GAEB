@@ -274,6 +274,16 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'main-school-data-insertion',
+    loadComponent: () => import('./components/lands-applications/main-data-for-school-insertion/main-data-for-school-insertion').then(m => m.MainDataForSchoolInsertion),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'school-borders-data-insertion',
+    loadComponent: () => import('./components/lands-applications/school-borders-data-insertion/school-borders-data-insertion').then(m => m.BordersComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: '/login'
   }
