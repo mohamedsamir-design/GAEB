@@ -6,222 +6,227 @@ namespace AngularProjectApi.Data;
 
 public class ApplicationDbContext : DbContext
 {
-  public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-      : base(options)
-  {
-  }
-
-  public virtual DbSet<LandTechnicalInspection> LandTechnicalInspection { get; set; }
-
-  // Lookup entities
-  public DbSet<Governorate> Governorates { get; set; }
-  public DbSet<LandOwner> LandOwner { get; set; }
-
-  public DbSet<LandAndLegalConnection> LandAndLegalConnection { get; set; }
-
-  // Land entities
-  public DbSet<Land> Lands { get; set; }
-  public DbSet<LandCoordinate> LandCoordinates { get; set; }
-  public DbSet<BuildingLocation> BuildingLocations { get; set; }
-
-  // Building entities
-  public DbSet<Building> Buildings { get; set; }
-  public DbSet<BuildingBasicData> BuildingBasicData { get; set; }
-  public DbSet<BuildingAnnex> BuildingAnnexes { get; set; }
-  public DbSet<NetworkCost> NetworkCosts { get; set; }
-
-  // Rental entities
-  public DbSet<RentalBuilding> RentalBuildings { get; set; }
-  public DbSet<RentalBuildingLocation> RentalBuildingLocations { get; set; }
-  public DbSet<RentalStatusFlag> RentalStatusFlags { get; set; }
-  public DbSet<RentalDecision> RentalDecisions { get; set; }
-
-  // School Map entities
-  public DbSet<StudyPeriod> StudyPeriods { get; set; }
-  public DbSet<SchoolRoad> SchoolRoads { get; set; }
-  public DbSet<SchoolAnnex> SchoolAnnexes { get; set; }
-  public DbSet<SchoolSpace> SchoolSpaces { get; set; }
-  public DbSet<EducationalBuilding> EducationalBuildings { get; set; }
-
-  // Displacement entities
-  public DbSet<DisplacementRecord> DisplacementRecords { get; set; }
-  public DbSet<DisplacementCompensation> DisplacementCompensations { get; set; }
-  public DbSet<CouncilApproval> CouncilApprovals { get; set; }
-
-  // User and Authentication entities
-  public DbSet<User> Users { get; set; }
-  public DbSet<UserProgram> Programs { get; set; }
-  public DbSet<UserMenu> Menus { get; set; }
-  public DbSet<UserLibrary> Libraries { get; set; }
-
-  protected override void OnModelCreating(ModelBuilder modelBuilder)
-  {
-    base.OnModelCreating(modelBuilder);
-
-    // Ensure Arabic-aware comparisons/sorting at the model level
-    // Note: This does not change existing column collations, but applies to EF Core queries it generates
-    modelBuilder.UseCollation("Arabic_CI_AS");
-
-    // Configure all string properties to use Unicode (NVARCHAR) for Arabic support
-    foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
     {
-      foreach (var property in entityType.GetProperties())
-      {
-        if (property.ClrType == typeof(string))
-        {
-          property.SetIsUnicode(true);
-        }
-      }
     }
 
-    // Configure unique indexes
-    modelBuilder.Entity<Land>()
-        .HasIndex(l => l.ReferenceNumber)
-        .IsUnique();
+    public virtual DbSet<LandTechnicalInspection> LandTechnicalInspection { get; set; }
 
-    modelBuilder.Entity<Building>()
-        .HasIndex(b => b.BuildingNumber)
-        .IsUnique();
+    // Lookup entities
+    public DbSet<Governorate> Governorates { get; set; }
+    public DbSet<LandOwner> LandOwner { get; set; }
+    public DbSet<District> District { get; set; }
+    public DbSet<Village> Villages { get; set; }
+    public DbSet<VillagesContinue> VillagesContinue { get; set; }
 
-    modelBuilder.Entity<RentalBuilding>()
-        .HasIndex(r => r.IdentificationNumber)
-        .IsUnique();
+    public DbSet<LandAndLegalConnection> LandAndLegalConnection { get; set; }
 
-    modelBuilder.Entity<RentalStatusFlag>()
-        .HasIndex(r => r.Code)
-        .IsUnique();
+    // Land entities
+    public DbSet<Land> Lands { get; set; }
+    public DbSet<LandCoordinate> LandCoordinates { get; set; }
+    public DbSet<BuildingLocation> BuildingLocations { get; set; }
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasIndex(e => e.BuildingNumber)
-        .IsUnique();
+    // Building entities
+    public DbSet<Building> Buildings { get; set; }
+    public DbSet<BuildingBasicData> BuildingBasicData { get; set; }
+    public DbSet<BuildingAnnex> BuildingAnnexes { get; set; }
+    public DbSet<NetworkCost> NetworkCosts { get; set; }
 
-    modelBuilder.Entity<DisplacementRecord>()
-        .HasIndex(d => d.ReferenceNumber)
-        .IsUnique();
+    // Rental entities
+    public DbSet<RentalBuilding> RentalBuildings { get; set; }
+    public DbSet<RentalBuildingLocation> RentalBuildingLocations { get; set; }
+    public DbSet<RentalStatusFlag> RentalStatusFlags { get; set; }
+    public DbSet<RentalDecision> RentalDecisions { get; set; }
 
-    modelBuilder.Entity<User>()
-        .HasIndex(u => u.Username)
-        .IsUnique();
+    // School Map entities
+    public DbSet<StudyPeriod> StudyPeriods { get; set; }
+    public DbSet<SchoolRoad> SchoolRoads { get; set; }
+    public DbSet<SchoolAnnex> SchoolAnnexes { get; set; }
+    public DbSet<SchoolSpace> SchoolSpaces { get; set; }
+    public DbSet<EducationalBuilding> EducationalBuildings { get; set; }
 
-    // Configure relationships
-    modelBuilder.Entity<Land>()
-        .HasMany(l => l.Coordinates)
-        .WithOne(c => c.Land)
-        .HasForeignKey(c => c.LandId)
-        .OnDelete(DeleteBehavior.Cascade);
+    // Displacement entities
+    public DbSet<DisplacementRecord> DisplacementRecords { get; set; }
+    public DbSet<DisplacementCompensation> DisplacementCompensations { get; set; }
+    public DbSet<CouncilApproval> CouncilApprovals { get; set; }
 
-    modelBuilder.Entity<Land>()
-        .HasMany(l => l.BuildingLocations)
-        .WithOne(b => b.Land)
-        .HasForeignKey(b => b.LandId)
-        .OnDelete(DeleteBehavior.Cascade);
+    // User and Authentication entities
+    public DbSet<User> Users { get; set; }
+    public DbSet<UserProgram> Programs { get; set; }
+    public DbSet<UserMenu> Menus { get; set; }
+    public DbSet<UserLibrary> Libraries { get; set; }
+    public DbSet<Amenity> Amenity { get; set; }
+    public DbSet<BuildingAmenity> BuildingAmenity { get; set; }
 
-    modelBuilder.Entity<Building>()
-        .HasMany(b => b.Annexes)
-        .WithOne(a => a.Building)
-        .HasForeignKey(a => a.BuildingId)
-        .OnDelete(DeleteBehavior.Cascade);
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
 
-    modelBuilder.Entity<Building>()
-        .HasMany(b => b.NetworkCosts)
-        .WithOne(n => n.Building)
-        .HasForeignKey(n => n.BuildingId)
-        .OnDelete(DeleteBehavior.Cascade);
+        // Ensure Arabic-aware comparisons/sorting at the model level
+        // Note: This does not change existing column collations, but applies to EF Core queries it generates
+        modelBuilder.UseCollation("Arabic_CI_AS");
 
-    modelBuilder.Entity<Building>()
-        .HasOne(b => b.BasicData)
-        .WithOne(bd => bd.Building)
-        .HasForeignKey<BuildingBasicData>(bd => bd.BuildingId)
-        .OnDelete(DeleteBehavior.Cascade);
+        // Configure all string properties to use Unicode (NVARCHAR) for Arabic support
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            foreach (var property in entityType.GetProperties())
+            {
+                if (property.ClrType == typeof(string))
+                {
+                    property.SetIsUnicode(true);
+                }
+            }
+        }
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasMany(e => e.StudyPeriods)
-        .WithOne(s => s.EducationalBuilding)
-        .HasForeignKey(s => s.EducationalBuildingId)
-        .OnDelete(DeleteBehavior.SetNull);
+        // Configure unique indexes
+        modelBuilder.Entity<Land>()
+            .HasIndex(l => l.ReferenceNumber)
+            .IsUnique();
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasMany(e => e.SchoolRoads)
-        .WithOne(r => r.EducationalBuilding)
-        .HasForeignKey(r => r.EducationalBuildingId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<Building>()
+            .HasIndex(b => b.BuildingNumber)
+            .IsUnique();
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasMany(e => e.SchoolAnnexes)
-        .WithOne(a => a.EducationalBuilding)
-        .HasForeignKey(a => a.EducationalBuildingId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<RentalBuilding>()
+            .HasIndex(r => r.IdentificationNumber)
+            .IsUnique();
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasMany(e => e.SchoolSpaces)
-        .WithOne(s => s.EducationalBuilding)
-        .HasForeignKey(s => s.EducationalBuildingId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<RentalStatusFlag>()
+            .HasIndex(r => r.Code)
+            .IsUnique();
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasMany(e => e.Buildings)
-        .WithOne(b => b.EducationalBuilding)
-        .HasForeignKey(b => b.EducationalBuildingId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasIndex(e => e.BuildingNumber)
+            .IsUnique();
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasMany(e => e.Lands)
-        .WithOne(l => l.EducationalBuilding)
-        .HasForeignKey(l => l.EducationalBuildingId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<DisplacementRecord>()
+            .HasIndex(d => d.ReferenceNumber)
+            .IsUnique();
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasMany(e => e.RentalBuildings)
-        .WithOne(r => r.EducationalBuilding)
-        .HasForeignKey(r => r.EducationalBuildingId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<User>()
+            .HasIndex(u => u.Username)
+            .IsUnique();
 
-    modelBuilder.Entity<EducationalBuilding>()
-        .HasMany(e => e.DisplacementRecords)
-        .WithOne(d => d.EducationalBuilding)
-        .HasForeignKey(d => d.EducationalBuildingId)
-        .OnDelete(DeleteBehavior.SetNull);
+        // Configure relationships
+        modelBuilder.Entity<Land>()
+            .HasMany(l => l.Coordinates)
+            .WithOne(c => c.Land)
+            .HasForeignKey(c => c.LandId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-    modelBuilder.Entity<RentalBuilding>()
-        .HasMany(r => r.Decisions)
-        .WithOne(d => d.RentalBuilding)
-        .HasForeignKey(d => d.BuildingId)
-        .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Land>()
+            .HasMany(l => l.BuildingLocations)
+            .WithOne(b => b.Land)
+            .HasForeignKey(b => b.LandId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-    modelBuilder.Entity<RentalBuilding>()
-        .HasOne(r => r.StatusFlag)
-        .WithMany(s => s.RentalBuildings)
-        .HasForeignKey(r => r.StatusFlagId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<Building>()
+            .HasMany(b => b.Annexes)
+            .WithOne(a => a.Building)
+            .HasForeignKey(a => a.BuildingId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-    modelBuilder.Entity<DisplacementRecord>()
-        .HasMany(d => d.Compensations)
-        .WithOne(c => c.DisplacementRecord)
-        .HasForeignKey(c => c.DisplacementId)
-        .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Building>()
+            .HasMany(b => b.NetworkCosts)
+            .WithOne(n => n.Building)
+            .HasForeignKey(n => n.BuildingId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-    modelBuilder.Entity<DisplacementRecord>()
-        .HasMany(d => d.CouncilApprovals)
-        .WithOne(c => c.DisplacementRecord)
-        .HasForeignKey(c => c.DisplacementId)
-        .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Building>()
+            .HasOne(b => b.BasicData)
+            .WithOne(bd => bd.Building)
+            .HasForeignKey<BuildingBasicData>(bd => bd.BuildingId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-    modelBuilder.Entity<User>()
-        .HasOne(u => u.UserProgram)
-        .WithMany(p => p.Users)
-        .HasForeignKey(u => u.ProgramId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasMany(e => e.StudyPeriods)
+            .WithOne(s => s.EducationalBuilding)
+            .HasForeignKey(s => s.EducationalBuildingId)
+            .OnDelete(DeleteBehavior.SetNull);
 
-    modelBuilder.Entity<User>()
-        .HasOne(u => u.UserMenu)
-        .WithMany(m => m.Users)
-        .HasForeignKey(u => u.MenuId)
-        .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasMany(e => e.SchoolRoads)
+            .WithOne(r => r.EducationalBuilding)
+            .HasForeignKey(r => r.EducationalBuildingId)
+            .OnDelete(DeleteBehavior.SetNull);
 
-    modelBuilder.Entity<User>()
-        .HasOne(u => u.UserLibrary)
-        .WithMany(l => l.Users)
-        .HasForeignKey(u => u.LibraryId)
-        .OnDelete(DeleteBehavior.SetNull);
-  }
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasMany(e => e.SchoolAnnexes)
+            .WithOne(a => a.EducationalBuilding)
+            .HasForeignKey(a => a.EducationalBuildingId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasMany(e => e.SchoolSpaces)
+            .WithOne(s => s.EducationalBuilding)
+            .HasForeignKey(s => s.EducationalBuildingId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasMany(e => e.Buildings)
+            .WithOne(b => b.EducationalBuilding)
+            .HasForeignKey(b => b.EducationalBuildingId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasMany(e => e.Lands)
+            .WithOne(l => l.EducationalBuilding)
+            .HasForeignKey(l => l.EducationalBuildingId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasMany(e => e.RentalBuildings)
+            .WithOne(r => r.EducationalBuilding)
+            .HasForeignKey(r => r.EducationalBuildingId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<EducationalBuilding>()
+            .HasMany(e => e.DisplacementRecords)
+            .WithOne(d => d.EducationalBuilding)
+            .HasForeignKey(d => d.EducationalBuildingId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<RentalBuilding>()
+            .HasMany(r => r.Decisions)
+            .WithOne(d => d.RentalBuilding)
+            .HasForeignKey(d => d.BuildingId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<RentalBuilding>()
+            .HasOne(r => r.StatusFlag)
+            .WithMany(s => s.RentalBuildings)
+            .HasForeignKey(r => r.StatusFlagId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<DisplacementRecord>()
+            .HasMany(d => d.Compensations)
+            .WithOne(c => c.DisplacementRecord)
+            .HasForeignKey(c => c.DisplacementId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<DisplacementRecord>()
+            .HasMany(d => d.CouncilApprovals)
+            .WithOne(c => c.DisplacementRecord)
+            .HasForeignKey(c => c.DisplacementId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.UserProgram)
+            .WithMany(p => p.Users)
+            .HasForeignKey(u => u.ProgramId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.UserMenu)
+            .WithMany(m => m.Users)
+            .HasForeignKey(u => u.MenuId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.UserLibrary)
+            .WithMany(l => l.Users)
+            .HasForeignKey(u => u.LibraryId)
+            .OnDelete(DeleteBehavior.SetNull);
+    }
 }

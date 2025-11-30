@@ -59,7 +59,7 @@ public class LandTechnicalInspectionController : ControllerBase
     landTechnicalInspectionDTO.Governorate = governorate.Name;
 
     var landOwner = await _context.LandOwner.SingleAsync(L => L.Id == landTechnicalInspection.GovernorateCode);
-    landTechnicalInspectionDTO.LandOwner =  landOwner.Name;
+    landTechnicalInspectionDTO.LandOwnerShipName =  landOwner.Name;
 
     return landTechnicalInspectionDTO;
   }

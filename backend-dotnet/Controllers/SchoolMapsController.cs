@@ -151,4 +151,69 @@ public class SchoolMapsController : ControllerBase
             throw; 
         }
     }
+
+    // POST: api/school-maps/educational-buildings/create-with-location
+    [HttpPost("educational-buildings/create-with-location")]
+    public async Task<ActionResult<EducationalBuilding>> CreateEducationalBuildingWithLocation([FromBody] CreateBuildingWithLocationDTO dto)
+    {
+        // Validate that the building number doesn't already exist
+        if (await _context.EducationalBuildings.AnyAsync(b => b.BuildingNumber == dto.BuildingNumber))
+        {
+            return BadRequest(new { message = "Building number already exists" });
+        }
+
+        // Validate that district exists
+        var district = await _context.District.FirstOrDefaultAsync(d => d.Number == dto.DistrictNum);
+        if (district == null)
+        {
+            return BadRequest(new { message = "District not found" });
+        }
+
+        // Validate that village exists and belongs to the district
+        var village = await _context.Villages.FirstOrDefaultAsync(d => d.Number == dto.VillageNum);
+        if (village == null)
+        {
+            return BadRequest(new { message = "Village not found" });
+        }
+
+        // Check if village belongs to the district (village number should start with district number)
+        if (!village.Number.ToString().StartsWith(district.Number.ToString()))
+        {
+            return BadRequest(new { message = "Village does not belong to the selected district" });
+        }
+
+        // Validate that villages continue exists
+        var villagesContinue = await _context.VillagesContinue.FirstOrDefaultAsync(d => d.Number == dto.VillagesContinueNumber);
+        if (villagesContinue == null)
+        {
+            return BadRequest(new { message = "VillagesContinue not found" });
+        }
+
+        // Validate that land ownership exists
+        var landOwner = await _context.LandOwner.FindAsync(dto.LandOwnershipId);
+        if (landOwner == null)
+        {
+            return BadRequest(new { message = "Land ownership not found" });
+        }
+
+        // Create the educational building
+        var building = new EducationalBuilding
+        {
+            Id = Guid.NewGuid(),
+            BuildingNumber = dto.BuildingNumber,
+            BuildingName = dto.BuildingName,
+            TotalArea = dto.TotalArea,
+            DistrictId = dto.DistrictNum,
+            VillageId = dto.VillageNum,
+            VillagesContinueId = dto.VillagesContinueNumber,
+            LandOwnership = landOwner.Name,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+
+        _context.EducationalBuildings.Add(building);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetEducationalBuilding), new { buildingNumber = building.BuildingNumber }, building);
+    }
 }

@@ -33,7 +33,7 @@ public class BuildingsController : ControllerBase
     [HttpGet("by-number/{buildingNumber}")]
     public async Task<ActionResult<Building>> GetBuildingByNumber(string buildingNumber)
     {
-        var building = await _context.Buildings.AsNoTracking().Include( b => b.BasicData).FirstOrDefaultAsync(b => b.BuildingNumber == buildingNumber);
+        var building = await _context.Buildings.AsNoTracking().Include(b => b.BasicData).FirstOrDefaultAsync(b => b.BuildingNumber == buildingNumber);
         if (building == null) return NotFound();
         return building;
     }
