@@ -2,11 +2,26 @@ import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  // {
-  //   path: 'land-operations',
-  //   loadComponent: () => import('./components/lands-applications/lands-applications-operations/CreateNew').then(m => m.CreateNew),
-  //   canActivate: [authGuard]
-  // },
+  {
+    path: 'main-school-data-insertion',
+    loadComponent: () => import('./components/lands-applications/main-data-for-school-insertion/main-data-for-school-insertion').then(m => m.MainDataForSchoolInsertion),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'documentsData',
+    loadComponent: () => import('./components/lands-applications/documentsData/documentsData').then(m => m.DocumentsData),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'recording-data-for-impactful-oceans',
+    loadComponent: () => import('./components/lands-applications/recording-data-for-impactful-oceans/recording-data-for-impactful-oceans').then(m => m.RecordingDataForImpactfulOceans),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'school-borders-data-insertion',
+    loadComponent: () => import('./components/lands-applications/school-borders-data-insertion/school-borders-data-insertion').then(m => m.BordersComponent),
+    canActivate: [authGuard]
+  },
   {
     path: 'land-technical-inspection-inquiry',
     loadComponent: () => import('./components/database-operations/land-technical-inspection-inquiry/land-technical-inspection-inquiry').then(m => m.LandTechnicalInspectionInquiryComponent),

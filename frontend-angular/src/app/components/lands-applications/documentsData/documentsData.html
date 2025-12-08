@@ -1,0 +1,64 @@
+<div class="applications-menu-container">
+	<app-header [pageTitle]="'تطبيق الأراضي - تسجيل بيانات المستندات'" [pageSubtitle]="'اختر العملية المطلوبة'"
+		[showBackButton]="true" [showHomeButton]="true" [backButtonLabel]="'العودة'"
+		[backButtonAriaLabel]="'العودة للقائمة الرئيسية'" (backClicked)="goBack()" (homeClicked)="goHome()"
+		(logoutClicked)="logout()">
+	</app-header>
+
+	<main class="applications-menu-main">
+		<div class="menu-container">
+			<h2 class="menu-title">تسجيل بيانات المستندات</h2>
+
+			<section class="link-form-container">
+				<form [formGroup]="form" (ngSubmit)="submit()" class="link-form">
+					<div class="form-row">
+						<label for="landCode">كود الأرض:<span class="required">*</span></label>
+						<input id="landCode" formControlName="landCode" type="text" />
+						<div class="error" *ngIf="form.get('landCode')?.invalid && form.get('landCode')?.touched">هذا
+							الحقل مطلوب</div>
+					</div>
+
+					<div class="form-row">
+						<table class="school-table">
+							<thead>
+								<tr>
+									<th>اسم الموافقة</th>
+									<th>يوجد</th>
+									<th>لا يوجد</th>
+									<th>غير مطلوب</th>
+								</tr>
+							</thead>
+							<tbody formArrayName="availableDocuments">
+								<tr *ngFor="let doc of availableDocuments; let i = index">
+									<td>
+										{{ doc.name }}
+										<div class="error" *ngIf="selectionErrors[i]">يرجى اختيار اختيار واحد</div>
+									</td>
+									<td class="radio-cell">
+										<input type="radio" [name]="'doc' + i"
+											(change)="doc.exist = true; doc.doesNotExist = false; doc.notRequired = false; onDocSelection(i)"
+											[checked]="doc.exist" />
+									</td>
+									<td class="radio-cell">
+										<input type="radio" [name]="'doc' + i"
+											(change)="doc.exist = false; doc.doesNotExist = true; doc.notRequired = false; onDocSelection(i)"
+											[checked]="doc.doesNotExist" />
+									</td>
+									<td class="radio-cell">
+										<input type="radio" [name]="'doc' + i"
+											(change)="doc.exist = false; doc.doesNotExist = false; doc.notRequired = true; onDocSelection(i)"
+											[checked]="doc.notRequired" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="form-actions">
+						<button type="submit" class="btn-submit">حفظ</button>
+					</div>
+				</form>
+			</section>
+		</div>
+	</main>
+</div>

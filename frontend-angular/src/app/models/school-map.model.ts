@@ -94,4 +94,9 @@ export interface EducationalBuildingData {
   coordinateZ?: number;
   positiveEnvironment?: string;
   negativeEnvironment?: string;
+  districtId?: number;
+  villageId?: number;
+  villagesContinueId?: number;
+  totalArea?: number;
+  buildingName?: string;
 }

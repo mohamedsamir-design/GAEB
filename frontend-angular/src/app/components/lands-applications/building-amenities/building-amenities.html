@@ -1,66 +1,120 @@
-	<app-header 
-		[pageTitle]="'تطبيق الاراضي - بيانات المرافق'"
-		[pageSubtitle]="'اختر العملية المطلوبة'"
-		[showBackButton]="true"
-		[showHomeButton]="true"
-		[backButtonLabel]="'العودة'"
-		[backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
-		(backClicked)="goBack()"
-		(homeClicked)="goHome()"
-		(logoutClicked)="logout()">
-	</app-header>
+<app-header 
+  [pageTitle]="'تطبيق الاراضي - بيانات المرافق'"
+  [pageSubtitle]="'اختر العملية المطلوبة'"
+  [showBackButton]="true"
+  [showHomeButton]="true"
+  [backButtonLabel]="'العودة'"
+  [backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+  (backClicked)="goBack()"
+  (homeClicked)="goHome()"
+  (logoutClicked)="logout()">
+</app-header>
+
 <div class="container">
 
   <h2 class="title">بحث عن مرافق المبنى</h2>
 
-  <!-- Search Fields -->
+  <!-- Search Box -->
   <div class="search-box">
+    <input 
+      type="text" 
+      [(ngModel)]="buildingNumber" 
+      placeholder="أدخل رقم المبنى" 
+      class="search-input"
+      (keyup.enter)="searchAmenities()">
 
-    <div class="field">
-      <label>رقم المبنى</label>
-      <input type="text" [(ngModel)]="buildingNumber" placeholder="أدخل رقم المبنى">
-    </div>
-
-    <div class="field">
-      <label>اسم المبنى</label>
-      <input type="text" [(ngModel)]="buildingName" placeholder="أدخل اسم المبنى">
-    </div>
-
-    <button class="search-btn" (click)="searchAmenities()">بحث</button>
+    <button class="search-btn" (click)="searchAmenities()">
+      🔎 <span>بحث</span>
+    </button>
   </div>
 
-
-  <!-- TABLE (Appears After Search) -->
+  <!-- Results Section -->
   <div *ngIf="hasSearched" class="results-section">
 
-    <div class="header-row">
-      <h3>المرافق الحالية</h3>
-      <button class="add-btn" (click)="addAmenity()">➕ إضافة مرفق جديد</button>
+    <!-- Add Button -->
+    <div class="add-button-container">
+      <button (click)="openAddModal()" class="add-btn-large">
+        ➕ إضافة مرفق جديد
+      </button>
     </div>
 
+    <!-- Table -->
     <table class="amenities-table" *ngIf="amenities.length > 0">
-
       <thead>
         <tr>
-          <th>الرقم المرجعي</th>
+          <th>اسم المبنى</th>
           <th>اسم المرفق</th>
-          <th>الوصف</th>
+          <th>الإجراءات</th>
         </tr>
       </thead>
-
       <tbody>
         <tr *ngFor="let a of amenities">
-          <td>{{ a.referenceNumber }}</td>
+          <td>{{ a.buildingName }}</td>
           <td>{{ a.name }}</td>
-          <td>{{ a.description }}</td>
+          <td class="actions-cell">
+            <div class="actions">
+              <button (click)="deleteAmenity(a)" class="action-btn delete-btn" title="حذف">
+                ❌
+              </button>
+            </div>
+          </td>
         </tr>
       </tbody>
-
     </table>
 
-    <p *ngIf="amenities.length === 0" class="no-results">
-      لا توجد مرافق مسجلة لهذا المبنى.
-    </p>
+    <!-- Empty State -->
+    <div *ngIf="amenities.length === 0" class="empty-state">
+      <div class="empty-icon">❓❓</div>
+      <p>لا توجد مرافق مسجلة لرقم المبنى: <strong>{{ buildingNumber }}</strong></p>
+      <button (click)="openAddModal()" class="add-btn-large mt-4">
+        add_circle_outline إضافة مرفق جديد لهذا المبنى
+      </button>
+    </div>
 
+  </div>
+</div>
+
+<!-- Modal لإضافة مرفق -->
+<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>اختيار مرفق لإضافته إلى المبنى رقم {{ buildingNumber }}</h3>
+      <button class="close-btn" (click)="closeModal()">❌</button>
+    </div>
+
+    <div class="modal-body">
+      <table class="modal-table">
+        <thead>
+          <tr>
+            <th>اختر</th>
+            <th>اسم المرفق</th>
+            <th>الوصف</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of availableAmenities; let i = index">
+            <td class="checkbox-cell">
+              <label class="checkbox-label">
+                <input type="checkbox" 
+                       [(ngModel)]="item.selected"
+                       (change)="onAmenitySelect(item)">
+                <span class="checkmark"></span>
+              </label>
+            </td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="closeModal()">إلغاء</button>
+      <button class="btn-confirm" 
+              [disabled]="!hasSelectedAmenities()"
+              (click)="confirmAddAmenities()">
+        💾 إضافة المرافق المحددة
+      </button>
+    </div>
   </div>
 </div>

@@ -1,12 +1,27 @@
 /**
  * Land Data Model
- * Represents land parcels and their associated information
  */
 export interface GovernorateData {
   id: number;
   name: string;
   BRCE: number;
   BRCD: number;
+}
+
+/**
+ * Land Data Model
+ */
+export interface VillageData {
+  name: string;
+  number: number;
+}
+
+/**
+ * Land Data Model
+ */
+export interface DistrictData {
+  name: string;
+  number: number;
 }
 
 /**

@@ -12,11 +12,9 @@ namespace AngularProjectApi.Models;
 public partial class District
 {
     [Key]
-    public int Id { get; set; }
+    public int Number { get; set; }
 
     [Required]
     [StringLength(50)]
     public string Name { get; set; }
-
-    public int Number { get; set; }
 }

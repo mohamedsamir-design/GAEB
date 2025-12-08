@@ -265,7 +265,8 @@ export class ErrorHandlerService {
     if (error && typeof error === 'object' && 'message' in error) {
       const details = error as ErrorDetails;
       message += details.message;
-      
+      message += `\n\n${details.error}`;
+
       if (details.suggestion) {
         message += `\n\n💡 ${details.suggestion}`;
       }

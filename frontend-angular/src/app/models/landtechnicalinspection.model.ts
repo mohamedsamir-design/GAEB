@@ -38,7 +38,8 @@ export interface LandTechnicalInspection {
   southeastBoundaryLength: number,
   southwestBoundaryLength: number,
 
-  technicalResponsiblePersonId: number,
+  technicalResponsiblePersonId: string,
+  technicalResponsiblePersonNameAndId: string,
   legalResponsiblePersonId: number,
   needsCommitteeDate: Date,
   technicalInspectionDate: Date

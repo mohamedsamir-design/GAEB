@@ -1,0 +1,96 @@
+<div class="applications-menu-container">
+  <app-header [pageTitle]="'تطبيق الأراضي'" [pageSubtitle]="'اختر العملية المطلوبة'" [showBackButton]="true"
+    [showHomeButton]="true" [backButtonLabel]="'العودة'" [backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+    (backClicked)="goBack()" (homeClicked)="goHome()" (logoutClicked)="logout()">
+  </app-header>
+
+  <main class="applications-menu-main">
+    <div class="menu-container">
+      <h2 class="menu-title">القائمة الرئيسية للخريطة</h2>
+
+      <div class="menu-grid">
+
+        <!-- 1) بيانات ملاحظات المعاينة (disabled) -->
+        <div class="menu-card disabled-card" style="--card-color:#9ca3af">
+          <div class="card-icon">
+            <span class="icon">📐</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">بيانات ملاحظات المعاينة</h3>
+          </div>
+        </div>
+        
+        <!-- 1) بيانات عوائق الانشاء (disabled) -->
+        <div class="menu-card disabled-card" style="--card-color:#9ca3af">
+          <div class="card-icon">
+            <span class="icon">📐</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">بيانات عوائق الانشاء</h3>
+          </div>
+        </div>
+
+        <!-- 2) بيانات المستندات (CLICKABLE) -->
+        <div class="menu-card" style="--card-color:#3b82f6" tabindex="0" role="button"
+          (click)="navigateToDocumentsData()" (keydown.enter)="navigateToDocumentsData()"
+          (keydown.space)="navigateToDocumentsData()">
+
+          <div class="card-icon">
+            <span class="icon">🗺️</span>
+          </div>
+
+          <div class="card-content">
+            <h3 class="card-title">بيانات المستندات</h3>
+          </div>
+
+          <div class="card-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- 1) بيانات قرار التخصيص (disabled) -->
+        <div class="menu-card disabled-card" style="--card-color:#9ca3af">
+          <div class="card-icon">
+            <span class="icon">📐</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">بيانات قرار التخصيص</h3>
+          </div>
+        </div>
+        
+        <!-- 1) الميزانية الشبكية (disabled) -->
+        <div class="menu-card disabled-card" style="--card-color:#9ca3af">
+          <div class="card-icon">
+            <span class="icon">📐</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">الميزانية الشبكية</h3>
+          </div>
+        </div>
+
+        <!-- 1) ملاحظات المزانية (disabled) -->
+        <div class="menu-card disabled-card" style="--card-color:#9ca3af">
+          <div class="card-icon">
+            <span class="icon">📐</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">ملاحظات الميزانية</h3>
+          </div>
+        </div>
+        
+        <!-- 1) ملاحظات لجان المراجعة (disabled) -->
+        <div class="menu-card disabled-card" style="--card-color:#9ca3af">
+          <div class="card-icon">
+            <span class="icon">📐</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">ملاحظات لجان المراجعة</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

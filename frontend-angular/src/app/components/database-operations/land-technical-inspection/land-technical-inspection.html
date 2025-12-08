@@ -420,17 +420,8 @@
           <div class="form-row">
             <!-- بيانات المسؤول الفني -->
             <div class="form-group">
-              <label for="technicalResponsiblePersonId">رقم المسؤول الفني:<span class="required">*</span></label>
-              <input id="technicalResponsiblePersonId" formControlName="technicalResponsiblePersonId" type="text"
-                placeholder="رقم المسؤول الفني:"
-                [class.error]="form.get('technicalResponsiblePersonId')?.touched && form.get('technicalResponsiblePersonId')?.invalid" />
-              @if (form.get('technicalResponsiblePersonId')?.invalid &&
-              form.get('technicalResponsiblePersonId')?.touched)
-              {
-              @if (form.get('technicalResponsiblePersonId')?.hasError('technicalResponsiblePersonId')) {
-              <span class="error-message">رقم المسؤول الفني مطلوب</span>
-              }
-              }
+              <label for="technicalResponsiblePersonId">رقم المسؤول الفني:</label>
+              <label for="technicalResponsiblePersonId">{{this.technicalResponsiblePersonNameAndId}}</label>
             </div>
 
             <!-- بيانات المسؤول القانوني -->

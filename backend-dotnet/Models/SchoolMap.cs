@@ -213,6 +213,15 @@ public class EducationalBuilding
 
     [MaxLength(255)]
     public string? NegativeEnvironment { get; set; }
+    public int? DistrictId { get; set; }
+    public int? VillageId { get; set; }
+    public int? VillagesContinueId { get; set; }
+
+    public District? District { get; set; }
+    public Village? Village { get; set; }
+    public VillagesContinue? VillagesContinue { get; set; }
+    public decimal? TotalArea { get; set; }
+    public string? BuildingName { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
@@ -226,14 +235,5 @@ public class EducationalBuilding
     public ICollection<Land> Lands { get; set; } = new List<Land>();
     public ICollection<RentalBuilding> RentalBuildings { get; set; } = new List<RentalBuilding>();
     public ICollection<DisplacementRecord> DisplacementRecords { get; set; } = new List<DisplacementRecord>();
-
-    public District District { get; set; }
-    public int DistrictId { get; set; }
-    public Village Village { get; set; }
-    public int VillageId { get; set; }
-    public VillagesContinue VillagesContinue { get; set; }
-    public int VillagesContinueId { get; set; }
-    public decimal TotalArea { get; set; }
-    public string BuildingName { get; set; }
 }
 //

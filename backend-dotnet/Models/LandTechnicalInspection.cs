@@ -52,7 +52,7 @@ public partial class LandTechnicalInspection
 
   public int? SouthwestBoundaryLength { get; set; }
 
-  public int? TechnicalResponsiblePersonId { get; set; }
+  public Guid? TechnicalResponsiblePersonId { get; set; }
 
   public int? LegalResponsiblePersonId { get; set; }
 

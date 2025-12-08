@@ -6,10 +6,10 @@ import { HeaderComponent } from '../../shared/header/header';
 @Component({
   selector: 'app-lands-applications-main-menu',
   imports: [CommonModule, HeaderComponent],
-  templateUrl: './lands-applications-main-menu.html',
-  styleUrl: './lands-applications-main-menu.css'
+  templateUrl: './recording-data-for-impactful-oceans.html',
+  styleUrls: ['./recording-data-for-impactful-oceans.css']
 })
-export class LandsApplicationsMainMenu {
+export class RecordingDataForImpactfulOceans {
   private router = inject(Router);
 
   showMetadataModal = false;
@@ -20,24 +20,6 @@ export class LandsApplicationsMainMenu {
 
   closeMetadataModal() {
     this.showMetadataModal = false;
-  }
-
-  navigateTo(type: string) {
-    this.closeMetadataModal();
-
-    switch (type) {
-      case 'school-borders-data-insertion':
-        this.router.navigate(['/school-borders-data-insertion']);
-        break;
-
-      case 'building-amenities':
-        this.router.navigate(['/building-amenities']);
-        break;
-
-      case 'coordinates':
-        this.router.navigate(['/land/coordinates']);
-        break;
-    }
   }
 
   protected goBack(): void {
@@ -51,12 +33,8 @@ export class LandsApplicationsMainMenu {
   protected logout(): void {
     this.router.navigate(['/login']);
   }
-  navigateToBasicLandData() {
+  navigateToDocumentsData() {
     // Route to: تسجيل البيانات الأساسية لقطع الأراضي
-    this.router.navigate(['/main-school-data-insertion']);
-  }
-
-  navigateToRecordingDataforImpactfulOceans() {
-    this.router.navigate(['/recording-data-for-impactful-oceans']);
+    this.router.navigate(['/documentsData']);
   }
 }

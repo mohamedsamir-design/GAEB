@@ -1,0 +1,91 @@
+<app-header [pageTitle]="'تطبيق الأراضي - تسجيل البيانات الأساسية لقطع الأراضي (المدرسة / المنشأة)'"
+  [showBackButton]="true" [showHomeButton]="true" [backButtonLabel]="'العودة'"
+  [backButtonAriaLabel]="'العودة للقائمة الرئيسية'" (backClicked)="goBack()" (homeClicked)="goHome()"
+  (logoutClicked)="logout()">
+</app-header>
+
+<br>
+<div class="form-container">
+  <form [formGroup]="landForm" (ngSubmit)="submit()">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>رقم قطعه الارض <span class="required">*</span></label>
+        <input type="text" formControlName="buildingNumber" />
+        <div class="error" *ngIf="landForm.get('buildingNumber')?.touched && landForm.get('buildingNumber')?.invalid">
+          يرجى ادخال رقم قطعة الأرض
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>مسمي قطعه الارض <span class="required">*</span></label>
+        <input type="text" formControlName="buildingName" />
+        <div class="error" *ngIf="landForm.get('buildingName')?.touched && landForm.get('buildingName')?.invalid">
+          يرجى ادخال مسمى قطعة الأرض
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>مركز/قسم <span class="required">*</span></label>
+        <select formControlName="districtId" (change)="getVillagesByDistrictNumber(+$any($event.target).value)"
+          [class.error]="landForm.get('districtId')?.invalid && landForm.get('districtId')?.touched">
+          <option value="">-- اختر --</option>
+          @for (dis of districts; track dis.number) {
+          <option [disabled]="dis.name.startsWith('**')" [value]="dis.number">{{ dis.name }}</option>
+          }
+        </select>
+        @if (landForm.get('districtId')?.invalid && landForm.get('districtId')?.touched) {
+        <span class="error-message">المركز / القسم مطلوب</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label>قريه/حي <span class="required">*</span></label>
+
+        <select formControlName="villageId"
+          [class.error]="landForm.get('villageId')?.invalid && landForm.get('villageId')?.touched">
+          <option value="">-- اختر --</option>
+          @for (vil of villages; track vil.number) {
+          <option [value]="vil.number">{{ vil.name }}</option>
+          }
+        </select>
+        @if (landForm.get('villageId')?.invalid && landForm.get('villageId')?.touched) {
+        <span class="error-message">القرية / الحي مطلوب</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label>تابع قرية / شياخة <span class="required">*</span></label>
+        <input type="text" formControlName="subVillage" />
+        <div class="error" *ngIf="landForm.get('subVillage')?.touched && landForm.get('subVillage')?.invalid">
+          يرجى ادخال التابع للقرية / الشياخة
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>المساحة الكلية <span class="required">*</span></label>
+        <input type="number" formControlName="totalArea" />
+        <div class="error" *ngIf="landForm.get('totalArea')?.touched && landForm.get('totalArea')?.invalid">
+          يرجى ادخال المساحة الكلية
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>مالك الارض <span class="required">*</span></label>
+        <select formControlName="landOwnership" [class.error]="landForm.get('landOwnership')?.invalid && landForm.get('landOwnership')?.touched">
+          <option value="">-- اختر --</option>
+          @for (dis of landOwners; track dis.id) {
+          <option [value]="dis.id">{{ dis.name }}</option>
+          }
+        </select>
+        @if (landForm.get('landOwnership')?.invalid && landForm.get('landOwnership')?.touched) {
+        <span class="error-message">يرجى اختيار مالك الأرض</span>
+        }
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">حفظ</button>
+
+  </form>
+</div>

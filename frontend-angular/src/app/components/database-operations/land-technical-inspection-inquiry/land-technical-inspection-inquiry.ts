@@ -8,7 +8,7 @@ import { ErrorHandlerService } from '../../../services/error-handler.service';
 import { LandTechnicalInspectionApiService } from '../../../services/land-technical-inspection-api.service';
 
 @Component({
-  selector: 'app-land-technical-inspection',
+  selector: 'app-land-technical-inspection-inquiry',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, FormsModule, HeaderComponent],
   templateUrl: './land-technical-inspection-inquiry.html',

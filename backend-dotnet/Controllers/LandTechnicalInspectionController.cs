@@ -1,8 +1,9 @@
-using AngularProjectApi.Data;
+﻿using AngularProjectApi.Data;
 using AngularProjectApi.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace AngularProjectApi.Controllers;
@@ -11,69 +12,84 @@ namespace AngularProjectApi.Controllers;
 [Route("api/[controller]")]
 public class LandTechnicalInspectionController : ControllerBase
 {
-  private readonly ApplicationDbContext _context;
-  protected readonly IMapper _mapper;
+    private readonly ApplicationDbContext _context;
+    protected readonly IMapper _mapper;
 
-  public LandTechnicalInspectionController(ApplicationDbContext context, IMapper mapper)
-  {
-    _context = context;
-    _mapper = mapper;
-  }
-
-  // GET: api/lands
-  [HttpGet]
-  public async Task<ActionResult<IEnumerable<LandTechnicalInspection>>> GetAll()
-  {
-    return await _context.LandTechnicalInspection.OrderByDescending(l => l.CreatedAt).ToListAsync();
-  }
-
-  // GET: api/lands/{id}
-  [HttpGet("{id}")]
-  public async Task<ActionResult<LandTechnicalInspection>> Get(int id)
-  {
-    var landTechnicalInspection = await _context.LandTechnicalInspection.FindAsync(id);
-
-    if (landTechnicalInspection == null)
+    public LandTechnicalInspectionController(ApplicationDbContext context, IMapper mapper)
     {
-      return NotFound();
+        _context = context;
+        _mapper = mapper;
     }
 
-    return landTechnicalInspection;
-  }
-
-  // GET: api/LandTechnicalInspection/{id}
-  [HttpGet("GetByLandCode/{landCode}")]
-
-  public async Task<ActionResult<LandTechnicalInspectionDTO>> GetByLandCode(int landCode)
-  {
-    var landTechnicalInspection = await _context.LandTechnicalInspection.FirstOrDefaultAsync(l => l.LandCode == landCode);
-
-    if (landTechnicalInspection == null)
+    // GET: api/lands
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<LandTechnicalInspection>>> GetAll()
     {
-      return NotFound();
+        return await _context.LandTechnicalInspection.OrderByDescending(l => l.CreatedAt).ToListAsync();
     }
 
-    LandTechnicalInspectionDTO landTechnicalInspectionDTO = _mapper.Map<LandTechnicalInspectionDTO>(landTechnicalInspection);
+    // GET: api/lands/{id}
+    [HttpGet("{id}")]
+    public async Task<ActionResult<LandTechnicalInspection>> Get(int id)
+    {
+        var landTechnicalInspection = await _context.LandTechnicalInspection.FindAsync(id);
 
-    var governorate = await _context.Governorates.SingleAsync(L => L.Id == landTechnicalInspection.GovernorateCode);
-    landTechnicalInspectionDTO.Governorate = governorate.Name;
+        if (landTechnicalInspection == null)
+        {
+            return NotFound();
+        }
 
-    var landOwner = await _context.LandOwner.SingleAsync(L => L.Id == landTechnicalInspection.GovernorateCode);
-    landTechnicalInspectionDTO.LandOwnerShipName =  landOwner.Name;
+        return landTechnicalInspection;
+    }
 
-    return landTechnicalInspectionDTO;
-  }
+    // GET: api/LandTechnicalInspection/{id}
+    [HttpGet("GetByLandCode/{landCode}")]
 
-  // POST: api
-  [HttpPost]
-  public async Task<ActionResult<LandTechnicalInspection>> Create(LandTechnicalInspection landTechnicalInspection)
-  {
-    landTechnicalInspection.CreatedAt = DateTime.Now;
+    public async Task<ActionResult<LandTechnicalInspectionDTO>> GetByLandCode(int landCode)
+    {
+        var landTechnicalInspection = await _context.LandTechnicalInspection.FirstOrDefaultAsync(l => l.LandCode == landCode);
 
-    _context.LandTechnicalInspection.Add(landTechnicalInspection);
+        if (landTechnicalInspection == null)
+        {
+            return NotFound();
+        }
 
-    await _context.SaveChangesAsync();
+        LandTechnicalInspectionDTO landTechnicalInspectionDTO = _mapper.Map<LandTechnicalInspectionDTO>(landTechnicalInspection);
 
-    return CreatedAtAction(nameof(Create), new { id = landTechnicalInspection.Id }, landTechnicalInspection);
-  }
+        var governorate = await _context.Governorates.SingleAsync(L => L.Id == landTechnicalInspection.GovernorateCode);
+        landTechnicalInspectionDTO.Governorate = governorate.Name;
+
+        var landOwner = await _context.LandOwner.SingleAsync(L => L.Id == landTechnicalInspection.GovernorateCode);
+        landTechnicalInspectionDTO.LandOwnerShipName = landOwner.Name;
+
+        var user = await _context.Users.SingleAsync(u => u.Id == landTechnicalInspection.TechnicalResponsiblePersonId);
+
+        landTechnicalInspectionDTO.TechnicalResponsiblePersonNameAndId = user.Id + " " + user.FullName;
+
+        return landTechnicalInspectionDTO;
+    }
+
+    // POST: api
+    [HttpPost]
+    public async Task<ActionResult<LandTechnicalInspection>> Create(LandTechnicalInspection landTechnicalInspection)
+    {
+        if (await _context.LandTechnicalInspection.AnyAsync(l => l.LandCode == landTechnicalInspection.LandCode))
+        {
+            return Conflict("يوجد بالفعل فحص فني للأرض بنفس كود قطعة الأرض.");
+        }
+
+        // Verify the land exists in the Lands table
+        if (!await _context.Lands.AnyAsync(l => l.LandCode == landTechnicalInspection.LandCode.ToString()))
+        {
+            return BadRequest("لا توجد قطعة أرض بهذا الكود في جدول الأراضي.");
+        }
+
+        landTechnicalInspection.CreatedAt = DateTime.Now;
+
+        _context.LandTechnicalInspection.Add(landTechnicalInspection);
+
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(Create), new { id = landTechnicalInspection.Id }, landTechnicalInspection);
+    }
 }

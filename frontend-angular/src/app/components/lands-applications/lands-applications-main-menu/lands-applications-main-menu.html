@@ -1,14 +1,7 @@
 <div class="applications-menu-container">
-  <app-header
-    [pageTitle]="'تطبيق الأراضي'"
-    [pageSubtitle]="'اختر العملية المطلوبة'"
-    [showBackButton]="true"
-    [showHomeButton]="true"
-    [backButtonLabel]="'العودة'"
-    [backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
-    (backClicked)="goBack()"
-    (homeClicked)="goHome()"
-    (logoutClicked)="logout()">
+  <app-header [pageTitle]="'تطبيق الأراضي'" [pageSubtitle]="'اختر العملية المطلوبة'" [showBackButton]="true"
+    [showHomeButton]="true" [backButtonLabel]="'العودة'" [backButtonAriaLabel]="'العودة للقائمة الرئيسية'"
+    (backClicked)="goBack()" (homeClicked)="goHome()" (logoutClicked)="logout()">
   </app-header>
 
   <main class="applications-menu-main">
@@ -28,13 +21,8 @@
         </div>
 
         <!-- 2) تسجيل البيانات الاساسية لقطع الاراضي (CLICKABLE) -->
-        <div 
-          class="menu-card"
-          style="--card-color:#3b82f6"
-          tabindex="0"
-          role="button"
-          (click)="navigateToBasicLandData()"
-          (keydown.enter)="navigateToBasicLandData()"
+        <div class="menu-card" style="--card-color:#3b82f6" tabindex="0" role="button"
+          (click)="navigateToBasicLandData()" (keydown.enter)="navigateToBasicLandData()"
           (keydown.space)="navigateToBasicLandData()">
 
           <div class="card-icon">
@@ -47,12 +35,8 @@
 
           <div class="card-arrow">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path 
-                d="M8 12L16 12M16 12L12 8M16 12L12 16" 
-                stroke="currentColor" 
-                stroke-width="2" 
-                stroke-linecap="round" 
-                stroke-linejoin="round"/>
+              <path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </div>
         </div>
@@ -68,14 +52,8 @@
         </div>
 
         <!-- 4) تسجيل البيانات الوصفية لقطع الأراضي (CLICKABLE) -->
-       <div 
-        class="menu-card"
-        style="--card-color:#10b981"
-        tabindex="0"
-        role="button"
-        (click)="openMetadataModal()"
-        (keydown.enter)="openMetadataModal()"
-        (keydown.space)="openMetadataModal()">
+        <div class="menu-card" style="--card-color:#10b981" tabindex="0" role="button" (click)="openMetadataModal()"
+          (keydown.enter)="openMetadataModal()" (keydown.space)="openMetadataModal()">
           <div class="card-icon">
             <span class="icon">🏞️</span>
           </div>
@@ -86,18 +64,18 @@
 
           <div class="card-arrow">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path 
-                d="M8 12L16 12M16 12L12 8M16 12L12 16" 
-                stroke="currentColor" 
-                stroke-width="2" 
-                stroke-linecap="round" 
-                stroke-linejoin="round"/>
+              <path d="M8 12L16 12M16 12L12 8M16 12L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </div>
         </div>
 
-        <!-- 5) تسجيل البيانات للمحيطات المؤثرة (disabled) -->
-        <div class="menu-card disabled-card" style="--card-color:#9ca3af">
+        <!-- 5) تسجيل البيانات للمحيطات المؤثرة -->
+
+        <div class="menu-card" style="--card-color:#10b981" tabindex="0" role="button"
+          (click)="navigateToRecordingDataforImpactfulOceans()" (keydown.enter)="navigateToRecordingDataforImpactfulOceans()"
+          (keydown.space)="navigateToRecordingDataforImpactfulOceans()">
+
           <div class="card-icon">
             <span class="icon">🌍</span>
           </div>
@@ -147,15 +125,14 @@
 
 <!-- Modal -->
 <div class="modal fancy-modal" *ngIf="showMetadataModal">
-  
+
   <div class="modal-header">
     <h2>اختر نوع البيانات</h2>
     <button class="close-btn" (click)="closeMetadataModal()">✖</button>
   </div>
 
   <div class="modal-body">
-
-    <button class="modal-option" (click)="navigateTo('boundaries')">
+    <button class="modal-option" (click)="navigateTo('school-borders-data-insertion')">
       <span class="option-icon">📐</span>
       <span>بيانات الحدود</span>
     </button>
@@ -165,11 +142,9 @@
       <span>بيانات المرافق</span>
     </button>
 
-    <button class="modal-option" (click)="navigateTo('coordinates')">
+    <button class="modal-option dimmed" (click)="navigateTo('coordinates')">
       <span class="option-icon">📍</span>
       <span>بيانات الاحداثيات</span>
     </button>
-
   </div>
-
 </div>

@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { GovernorateData, LandOwnerData } from '../models/Lookup.Model';
+import { GovernorateData, LandOwnerData, DistrictData, VillageData } from '../models/Lookup.Model';
 import { environment } from '../../environments/environment.development';
 import { ErrorHandlerService } from './error-handler.service';
 
@@ -29,6 +29,29 @@ export class LookupApiService {
     return this.http.get<GovernorateData | null>(`${this.baseUrl}/GetGovernorates`).pipe(
       tap(data => console.log(`Fetched governorate data`)),
       catchError(error => this.errorHandler.handleError(error, `فشل تحميل المحافظات`))
+    );
+  }
+
+  /**
+   * Get all districts in the database
+   * Backend: GET api/lookup/getDistricts
+   */
+  getDistricts(): Observable<DistrictData | null> {
+    return this.http.get<DistrictData | null>(`${this.baseUrl}/GetDistricts`).pipe(
+      tap(data => console.log(`Fetched district data`)),
+      catchError(error => this.errorHandler.handleError(error, `فشل تحميل المراكز`))
+    );
+  }
+
+  
+  /**
+   * Get all districts in the database
+   * Backend: GET api/lookup/getDistricts
+   */
+  GetVillagesByDistrictNumber(districtNumber: number): Observable<VillageData | null> {
+    return this.http.get<VillageData | null>(`${this.baseUrl}/GetVillagesByDistrictNumber/${districtNumber}`).pipe(
+      tap(data => console.log(`Fetched villages data`)),
+      catchError(error => this.errorHandler.handleError(error, `فشل تحميل القرى`))
     );
   }
 

@@ -9,7 +9,6 @@ import { LandTechnicalInspection } from '../../../models/landtechnicalinspection
 import { ErrorHandlerService } from '../../../services/error-handler.service';
 import { LandTechnicalInspectionApiService } from '../../../services/land-technical-inspection-api.service';
 
-
 type ViewMode = 'search' | 'view' | 'create' | 'edit';
 
 @Component({
@@ -28,6 +27,8 @@ export class LandTechnicalInspectionComponent {
 
   selectedLandTechnicalInspection = signal<LandTechnicalInspection | null>(null);
   viewMode = signal<ViewMode>('search');
+  technicalResponsiblePersonNameAndId: string;
+  loggedInUser = JSON.parse(localStorage.getItem("currentUser") || '""');
 
   //Lookup
   governorates: GovernorateData[] = []; // Declare an empty array of MyObject
@@ -56,6 +57,8 @@ export class LandTechnicalInspectionComponent {
   constructor() {
     this.loadGovernorates();
     this.loadLandOwners();
+
+    this.technicalResponsiblePersonNameAndId = this.loggedInUser.id + ' ' + this.loggedInUser.fullName
   }
 
   form: FormGroup = this.fb.group({
@@ -92,7 +95,7 @@ export class LandTechnicalInspectionComponent {
     southeastBoundaryLength: ['', Validators.required],
     southwestBoundaryLength: ['', Validators.required],
 
-    technicalResponsiblePersonId: ['', Validators.required],
+    technicalResponsiblePersonId: [this.loggedInUser.id, Validators.required],
     legalResponsiblePersonId: ['', Validators.required],
     needsCommitteeDate: ['', Validators.required],
     technicalInspectionDate: ['', Validators.required]
